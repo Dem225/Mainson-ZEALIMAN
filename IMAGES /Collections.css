@@ -1,0 +1,460 @@
+/* --- Mise en page & Variables --- */
+:root {
+    --dark: #091426;
+    --muted: #585f6a;
+    --soft-blue: #f4f7ff;
+    --border: #eeeeee;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* --- HERO --- */
+.hero {
+    height: 90vh;
+    background: url('https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=1400') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-weight: 200;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.btn-dark {
+    background: var(--dark);
+    color: white;
+    text-decoration: none;
+    padding: 18px 40px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* --- REASSURANCE --- */
+.reassurance-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 30px;
+    margin: 80px auto;
+}
+
+.card-large,
+.card-small {
+    padding: 60px;
+    border-radius: 4px;
+}
+
+.bg-light-blue {
+    background: var(--soft-blue);
+}
+
+.card-small {
+    background: white;
+    border: 1px solid var(--border);
+}
+
+.icon-top {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: var(--dark);
+}
+
+.card-large h2,
+.card-small h2 {
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.card-large p,
+.card-small p {
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+.card-img-placeholder img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.floating-img {
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+.card-full-width {
+    grid-column: span 2;
+    background: var(--dark);
+    color: white;
+    padding: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge-outline {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 40px 60px;
+    font-size: 20px;
+    letter-spacing: 5px;
+    opacity: 0.4;
+    font-weight: 100;
+}
+
+/* --- PRODUCT GRID --- */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+}
+
+.sub-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #ccc;
+    font-weight: 700;
+}
+
+.section-header h2 {
+    font-weight: 400;
+    font-size: 1.8rem;
+    margin-top: 10px;
+}
+
+.link-more {
+    color: var(--dark);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 100px;
+}
+
+.img-wrapper {
+    position: relative;
+    background: #f9f9f9;
+    aspect-ratio: 4/5;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.img-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+.tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--dark);
+    color: white;
+    font-size: 8px;
+    padding: 4px 8px;
+    font-weight: 700;
+}
+
+.product-item h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.product-item .desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.product-item .price {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.btn-add  {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid var(--border);
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-add:hover  {
+    background: var(--dark);
+    color: white;
+    border-color: var(--dark);
+}
+.btn-add a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    border-color: var(--dark);
+    
+}
+
+
+/* --- NEWSLETTER --- */
+.newsletter {
+    background: #fafbfc;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.moon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: var(--muted);
+}
+
+.newsletter h2 {
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.news-form {
+    max-width: 450px;
+    margin: 0 auto;
+    display: flex;
+    border-bottom: 1px solid var(--dark);
+    padding-bottom: 10px;
+}
+
+.news-form input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 0 10px;
+}
+
+.news-form button {
+    background: var(--dark);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* --- FOOTER --- */
+.main-footer {
+    padding-top: 80px;
+    border-top: 1px solid var(--border);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 60px;
+}
+
+.brand p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-top: 20px;
+    font-weight: 300;
+}
+
+.footer-grid h6 {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    color: var(--dark);
+}
+
+.links a {
+    display: block;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 12px;
+    font-weight: 300;
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+    color: var(--muted);
+}
+
+.footer-bottom {
+    background: #fcfcfc;
+    padding: 30px 0;
+    border-top: 1px solid var(--border);
+    font-size: 10px;
+    color: #999;
+}
+
+.flex-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.legal a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- Variables & Reset --- */
+:root {
+    --primary-dark: #091426;
+    --text-muted: #585f6a;
+    --bg-header: rgba(255, 255, 255, 0.9);
+    --font-family: 'Manrope', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Style du Header --- */
+header {
+    width: 100%;
+    height: 90px;
+    background-color: var(--bg-header);
+    backdrop-filter: blur(10px); /* Effet flou au scroll */
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    position: fixed; /* Reste en haut au défilement */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* --- Logo --- */
+.logo {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: 5px; /* Espacement large type "Luxe" */
+    color: var(--primary-dark);
+    text-transform: uppercase;
+}
+
+/* --- Navigation --- */
+nav {
+    display: flex;
+    gap: 35px;
+}
+
+nav a {
+    text-decoration: none;
+    font-family: var(--font-family);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    position: relative;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--primary-dark);
+}
+
+/* --- Le Marqueur (Ligne de bas) --- */
+nav a.active {
+    color: var(--primary-dark);
+}
+
+nav a.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* La ligne prend toute la largeur du texte */
+    height: 1.5px;
+    background-color: var(--primary-dark);
+}
+
+/* --- Icônes (Recherche & Panier) --- */
+.header-icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.header-icons .material-symbols-outlined {
+    font-size: 22px;
+    color: var(--primary-dark);
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.header-icons .material-symbols-outlined:hover {
+    opacity: 0.6;
+    transform: translateY(-1px);
+}
+
+
+
+
+
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 200, /* Trait fin très élégant */
+    'GRAD' 0,
+    'opsz' 24;
+    
+    font-size: 24px;
+    color: #091426; /* Ton noir ZEALIMAN */
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.material-symbols-outlined:hover {
+    opacity: 0.6; /* Effet de transparence au survol */
+}

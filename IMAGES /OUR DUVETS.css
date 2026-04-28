@@ -1,0 +1,241 @@
+/* --- Variables et Reset --- */
+:root {
+    --primary: #091426;
+    --secondary: #585f6a;
+    --bg-color: #f8f9ff;
+    --white: #ffffff;
+    --border: #e2e8f0;
+    --font-main: 'Manrope', sans-serif;
+    --transition: all 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--primary);
+    line-height: 1.6;
+}
+
+/* --- Navigation --- */
+.navbar {
+    position: fixed;
+    top: 0; width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 600;
+    letter-spacing: 5px;
+    font-size: 1.2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--secondary);
+    font-size: 11px;
+    font-weight: 600;
+    margin: 0 15px;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+}
+
+.nav-links a.active {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 5px;
+}
+
+/* --- Layout --- */
+.content {
+    max-width: 1200px;
+    margin: 120px auto 80px;
+    padding: 0 40px;
+}
+
+.page-header {
+    max-width: 600px;
+    margin-bottom: 60px;
+}
+
+.breadcrumb {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--secondary);
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 200;
+    margin-bottom: 20px;
+}
+
+.description {
+    color: var(--secondary);
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+/* --- Filtres --- */
+.filter-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.filter-btn {
+    padding: 10px 30px;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    background: transparent;
+    font-family: var(--font-main);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+/* --- Grille de Produits --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 40px;
+    margin-top: 10px;
+}
+
+.product-card {
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.image-container {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: #eee;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1);
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s ease;
+}
+
+/* --- Effet Hover Image --- */
+.product-card:hover img {
+    transform: scale(1.1);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.badge {
+    position: absolute;
+    top: 20px; left: 20px;
+    background: rgba(255,255,255,0.9);
+    padding: 5px 12px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.category {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--secondary);
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+}
+
+.price {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.arrow-btn {
+    width: 35px; height: 35px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.product-card:hover .arrow-btn {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+/* --- Footer --- */
+.footer {
+    padding: 60px 40px;
+    background: white;
+    border-top: 1px solid var(--border);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 200, /* Trait fin très élégant */
+    'GRAD' 0,
+    'opsz' 24;
+    
+    font-size: 24px;
+    color: #091426; /* Ton noir ZEALIMAN */
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.material-symbols-outlined:hover {
+    opacity: 0.6; /* Effet de transparence au survol */
+}
