@@ -239,3 +239,33 @@ h1 {
 .material-symbols-outlined:hover {
     opacity: 0.6; /* Effet de transparence au survol */
 }
+
+/* --- CONFIGURATION NAVIGATION --- */
+
+/* Version Desktop (Par défaut) */
+.navbar {
+    position: fixed;
+    top: 0; 
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+
+
+
+
+
+
+

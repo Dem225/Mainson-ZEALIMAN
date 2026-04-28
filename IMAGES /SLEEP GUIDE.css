@@ -492,3 +492,168 @@ h1 {
 .material-symbols-outlined:hover {
     opacity: 0.6; /* Effet de transparence au survol */
 }
+
+
+
+/* ============================================================
+   STABILISATION TOTALE & RESPONSIVE - ZEALIMAN
+   ============================================================ */
+
+/* Verrouillage anti-balancement horizontal */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+}
+
+/* --- CONFIGURATION MOBILE (0px à 767px) --- */
+@media (max-width: 767px) {
+    body {
+        padding-bottom: 75px; /* Pour ne pas cacher le contenu derrière la nav */
+    }
+
+    .container {
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    /* 1. Header & Logo (Haut) */
+    .main-header {
+        height: 70px;
+        padding: 0;
+    }
+    
+    .logo {
+        font-size: 1rem;
+        letter-spacing: 3px;
+    }
+
+    .header-icons {
+        gap: 15px;
+    }
+
+    /* 2. Navigation Fixe en Bas (Barre d'onglets) */
+    .nav-menu {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: #ffffff;
+        display: flex !important; /* Force l'affichage horizontal */
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        border-top: 1px solid var(--border);
+        margin: 0;
+        padding: 0 10px;
+        z-index: 9999;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+
+    .nav-menu a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 !important;
+        padding: 0 !important;
+        font-size: 8px; /* Texte miniature style App */
+        gap: 4px;
+        width: 25%;
+        text-align: center;
+    }
+
+    .nav-menu a.active::after {
+        display: none; /* Supprime la barre qui décale tout */
+    }
+
+    .mobile-only {
+        display: block !important; /* Affiche les icônes Google */
+        font-size: 22px !important;
+    }
+
+    /* 3. Page Produit (Stable) */
+    .product-page {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        word-wrap: break-word;
+    }
+
+    .main-image {
+        border-radius: 0; /* Full width look sur mobile */
+        margin: 0 -20px;
+        width: calc(100% + 40px);
+    }
+
+    .thumbnails {
+        justify-content: center;
+    }
+
+    /* 4. Boutons d'Action */
+    .actions {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .btn-primary {
+        flex: 4;
+        font-size: 11px;
+    }
+
+    /* 5. Grilles (Features & Suggestions) */
+    .features-grid {
+        display: flex;
+        flex-direction: column;
+        padding: 40px 0;
+    }
+
+    .suggestion-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 produits par ligne */
+        gap: 15px;
+    }
+
+    /* 6. Newsletter & Footer */
+    .newsletter-form {
+        flex-direction: column;
+        border: none;
+    }
+
+    .newsletter-form input {
+        border-bottom: 1px solid var(--primary);
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-brand p {
+        margin: 20px auto;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .bottom-flex {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* --- CONFIGURATION DESKTOP (Cache les icônes du menu) --- */
+@media (min-width: 768px) {
+    .mobile-only {
+        display: none !important;
+    }
+}

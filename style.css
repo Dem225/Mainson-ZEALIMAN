@@ -583,110 +583,152 @@ nav a:hover {
 }
 
 
-
-/* --- RESPONSIVE DESIGN --- */
-
-/* Tablettes et écrans moyens (max 1024px) */
-@media (max-width: 1024px) {
-    .hero h1 {
-        font-size: 2.5rem;
+/* ============================================================
+   1. MOBILE (Écrans < 768px)
+   ============================================================ */
+@media (max-width: 767px) {
+    body {
+        padding-bottom: 70px; /* Espace pour la barre de nav fixe en bas */
     }
-    
+
+    /* Masquer le header classique pour le simplifier sur mobile */
+    header {
+        padding: 15px 20px;
+    }
+
+    header .main-nav {
+        display: none; /* On cache la nav du haut sur mobile */
+    }
+
+    /* Barre de navigation FIXE en BAS */
+    .main-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background: rgba(255, 255, 255, 0.98);
+        display: flex !important; /* Force l'affichage */
+        justify-content: space-around;
+        align-items: center;
+        border-top: 1px solid #eee;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        z-index: 9999;
+    }
+
+    .main-nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0; /* On retire les marges du desktop */
+        font-size: 9px;
+        gap: 4px;
+        padding-bottom: 0;
+    }
+
+    .main-nav a.active::after {
+        bottom: -5px; /* Ajustement de la ligne active sur mobile */
+    }
+
+    /* Sections en 1 colonne */
+    .hero {
+        height: 70vh;
+        padding: 0 5%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .hero h1 { font-size: 2.2rem; }
+
     .feature-grid {
-        grid-template-columns: 1fr; /* On passe sur une colonne */
+        grid-template-columns: 1fr;
     }
 
     .dark-blue {
         grid-column: span 1;
         flex-direction: column;
         text-align: center;
+        padding: 40px 20px;
         gap: 20px;
-    }
-}
-
-/* Mobiles larges (max 768px) */
-@media (max-width: 768px) {
-    header {
-        padding: 15px 20px;
-    }
-
-    nav {
-        display: none; /* Masque le menu classique pour mobile */
-    }
-
-    .hero {
-        padding: 0 5%;
-        height: 70vh;
-        text-align: center;
-        justify-content: center;
-    }
-
-    .hero-content {
-        max-width: 100%;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
     }
 
     .product-grid {
-        grid-template-columns: 1fr 1fr; /* 2 produits par ligne sur mobile large */
-        gap: 15px;
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
 
-    .product-img {
-        height: 300px;
+    .product-img { height: 350px; }
+
+    /* Newsletter */
+    .newsletter-form {
+        flex-direction: column;
+        padding: 0 20px;
+        gap: 10px;
     }
 
+    .newsletter-form input { width: 100%; }
+
+    /* Footer */
     .footer-top {
         flex-direction: column;
         gap: 40px;
     }
 
     .footer-links {
-        flex-wrap: wrap;
-        gap: 30px;
-    }
-
-    .newsletter-form {
         flex-direction: column;
-        width: 100%;
-    }
-
-    .newsletter-form input {
-        width: 100%;
-        margin-bottom: 10px;
+        gap: 30px;
     }
 }
 
-/* Petits mobiles (max 480px) */
-@media (max-width: 480px) {
+/* ============================================================
+   2. TABLETTE (768px à 1024px)
+   ============================================================ */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .hero h1 { font-size: 2.8rem; }
+
+    .feature-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
     .product-grid {
-        grid-template-columns: 1fr; /* 1 seul produit par ligne */
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+    header {
+        padding: 20px 3%;
     }
 
-    .feature-card {
-        padding: 30px 20px;
-    }
-
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-    
-    .footer-bottom {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-
-    .legal a {
+    nav a {
         margin: 0 10px;
+        font-size: 11px;
+    }
+}
+
+/* ============================================================
+   3. GRANDS ÉCRANS (Dès 1025px)
+   ============================================================ */
+@media (min-width: 1025px) {
+    /* On limite la largeur maximale pour éviter l'étirement excessif */
+    .features, .products, .newsletter, .footer-top, .section-header {
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* On cache les icônes de la navigation (Home, Bed...) sur PC pour le style texte pur */
+    .mobile-only {
+        display: none;
+    }
+}
+
+/* ============================================================
+   4. ÉCRANS TV / ULTRA-LARGES (1440px+)
+   ============================================================ */
+@media (min-width: 1440px) {
+    .hero h1 { font-size: 4rem; }
+    
+    .product-grid {
+        gap: 50px; /* Plus d'espace pour le luxe */
     }
 }
 

@@ -208,7 +208,7 @@
     margin-bottom: 15px;
 }
 
-.btn-add  {
+.btn-add {
     width: 100%;
     padding: 12px;
     background: transparent;
@@ -218,16 +218,17 @@
     transition: 0.3s;
 }
 
-.btn-add:hover  {
+.btn-add:hover {
     background: var(--dark);
     color: white;
     border-color: var(--dark);
 }
-.btn-add a{
+
+.btn-add a {
     text-decoration: none;
     color: rgb(255, 255, 255);
     border-color: var(--dark);
-    
+
 }
 
 
@@ -356,14 +357,16 @@ header {
     width: 100%;
     height: 90px;
     background-color: var(--bg-header);
-    backdrop-filter: blur(10px); /* Effet flou au scroll */
+    backdrop-filter: blur(10px);
+    /* Effet flou au scroll */
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 50px;
-    position: fixed; /* Reste en haut au défilement */
+    position: fixed;
+    /* Reste en haut au défilement */
     top: 0;
     left: 0;
     z-index: 1000;
@@ -374,7 +377,8 @@ header {
     font-family: var(--font-family);
     font-weight: 600;
     font-size: 1.3rem;
-    letter-spacing: 5px; /* Espacement large type "Luxe" */
+    letter-spacing: 5px;
+    /* Espacement large type "Luxe" */
     color: var(--primary-dark);
     text-transform: uppercase;
 }
@@ -412,7 +416,8 @@ nav a.active::after {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%; /* La ligne prend toute la largeur du texte */
+    width: 100%;
+    /* La ligne prend toute la largeur du texte */
     height: 1.5px;
     background-color: var(--primary-dark);
 }
@@ -437,24 +442,148 @@ nav a.active::after {
     transform: translateY(-1px);
 }
 
-
-
-
-
-
 .material-symbols-outlined {
     font-variation-settings:
-    'FILL' 0,
-    'wght' 200, /* Trait fin très élégant */
-    'GRAD' 0,
-    'opsz' 24;
-    
+        'FILL' 0,
+        'wght' 200,
+        /* Trait fin très élégant */
+        'GRAD' 0,
+        'opsz' 24;
+
     font-size: 24px;
-    color: #091426; /* Ton noir ZEALIMAN */
+    color: #091426;
+    /* Ton noir ZEALIMAN */
     cursor: pointer;
     transition: opacity 0.3s ease;
 }
 
 .material-symbols-outlined:hover {
-    opacity: 0.6; /* Effet de transparence au survol */
+    opacity: 0.6;
+    /* Effet de transparence au survol */
+}
+
+/* ==========================================
+   CONFIG GÉNÉRALE (STABILITÉ)
+   ========================================== */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    width: 100%;
+    scroll-behavior: smooth;
+}
+
+/* ==========================================
+   1. SMARTPHONES (0px - 767px)
+   ========================================== */
+@media (max-width: 767px) {
+    body { padding-bottom: 80px; } /* Espace pour la nav bas */
+
+    .container { padding: 0 20px; }
+
+    /* Barre de navigation en bas (Style App) */
+    nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 75px;
+        background: #ffffff;
+        display: flex !important;
+        justify-content: space-around;
+        align-items: center;
+        border-top: 1px solid #eee;
+        z-index: 9999;
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    }
+
+    nav a {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        font-size: 8px !important;
+        gap: 4px;
+        margin: 0 !important;
+        color: #585f6a;
+        text-align: center;
+    }
+
+    .mobile-only { display: block !important; }
+
+    /* Badge Panier */
+    .cart-wrapper-mobile { position: relative; }
+    .cart-badge {
+        position: absolute;
+        top: -5px;
+        right: -10px;
+        background: #091426;
+        color: white;
+        font-size: 9px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Grilles de produits (2 par ligne) */
+    .product-grid, .suggestion-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+
+    /* Sections Réassurance */
+    .reassurance-grid, .story-grid, .innovation-flex {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+    }
+}
+
+/* ==========================================
+   2. TABLETTES (768px - 1024px)
+   ========================================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container { padding: 0 30px; }
+
+    /* Grille de produits (2 par ligne aussi pour plus de confort) */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .hero-content h1 { font-size: 2.5rem; }
+
+    .reassurance-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ==========================================
+   3. DESKTOP / GRANDS ÉCRANS (1025px +)
+   ========================================== */
+@media (min-width: 1025px) {
+    .mobile-only { display: none !important; } /* Cache les icônes de la nav */
+    
+    header {
+        position: sticky;
+        top: 0;
+    }
+
+    nav {
+        display: flex;
+        gap: 30px;
+    }
+
+    /* Grille de produits (3 ou 4 par ligne selon ton envie) */
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* ==========================================
+   STYLISATION DES BOUTONS (TOUT ÉCRAN)
+   ========================================== */
+.btn-add, .btn-primary {
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.btn-add:active, .btn-primary:active {
+    transform: scale(0.95);
 }
