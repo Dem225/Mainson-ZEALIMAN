@@ -240,32 +240,92 @@ h1 {
     opacity: 0.6; /* Effet de transparence au survol */
 }
 
-/* --- CONFIGURATION NAVIGATION --- */
 
-/* Version Desktop (Par défaut) */
-.navbar {
-    position: fixed;
-    top: 0; 
-    width: 100%;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--border);
-    z-index: 1000;
+
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Ajustement pour Tablettes (max 1024px) */
+@media (max-width: 1024px) {
+    .nav-container { padding: 15px 25px; }
+    h1 { font-size: 2.8rem; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
 }
 
-.nav-item {
-    text-decoration: none;
-    color: var(--secondary);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: 0.3s;
+/* Ajustement pour Mobiles (max 768px) */
+@media (max-width: 768px) {
+    /* Navbar Mobile : On transforme le menu en barre de navigation basse (Tab Bar) 
+       pour une meilleure ergonomie au pouce */
+    .nav-links {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 5px;
+        border-top: 1px solid var(--border);
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    }
+
+    .nav-links a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 8px; /* Texte réduit sous l'icône */
+        margin: 0;
+        gap: 4px;
+        letter-spacing: 1px;
+    }
+
+    /* Gestion des icônes mobiles */
+    .mobile-only {
+        display: block !important;
+        font-size: 20px !important;
+    }
+
+    /* Masquer le texte long sur mobile pour éviter l'encombrement si nécessaire */
+    .nav-links a.active { border: none; padding: 0; }
+
+    /* Contenu principal */
+    .content {
+        margin-top: 80px;
+        padding: 0 20px;
+    }
+
+    h1 { font-size: 2.2rem; }
+
+    /* Filtres : Scroll horizontal si trop de catégories */
+    .filter-bar {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 15px;
+        display: flex;
+    }
+    
+    .filter-btn {
+        padding: 8px 20px;
+        flex-shrink: 0;
+    }
+
+    /* Grille de produits : 2 colonnes sur smartphone */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .image-container { border-radius: 10px; }
+    
+    /* On cache certains éléments secondaires sur mobile pour épurer */
+    .arrow-btn, .breadcrumb { display: none; }
+    
+    .footer { padding-bottom: 100px; } /* Espace pour la barre de menu basse */
 }
 
-
-
-
-
-
-
-
+/* Ajustement pour très petits écrans (max 480px) */
+@media (max-width: 480px) {
+    .logo { font-size: 0.9rem; letter-spacing: 2px; }
+    h1 { font-size: 1.8rem; }
+    .product-grid { grid-template-columns: 1fr; } /* Une colonne si le contenu est dense */
+}
