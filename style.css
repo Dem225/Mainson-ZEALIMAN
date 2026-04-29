@@ -295,11 +295,11 @@ nav a:hover {
 
 /* Placeholder images (à remplacer par des URL réelles) */
 .img1 {
-    background-image: url('https://images.unsplash.com/photo-1616137466211-f939a420be84?q=80&w=600');
+    background: url("./2.png");
 }
 
 .img2 {
-    background-image: url('https://images.unsplash.com/photo-1582531393165-f9316694601d?q=80&w=600');
+    background-image: url('./1.png');
 }
 
 .img3 {
@@ -583,9 +583,9 @@ nav a:hover {
 }
 
 
-/* ============================================================
+/* 
    1. MOBILE (Écrans < 768px)
-   ============================================================ */
+    */
 @media (max-width: 767px) {
     body {
         padding-bottom: 70px; /* Espace pour la barre de nav fixe en bas */
