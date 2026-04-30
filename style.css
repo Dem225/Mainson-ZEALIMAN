@@ -17,11 +17,11 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
     /* Corps par défaut */
     color: var(--dark);
     line-height: 1.6;
     background-color: white;
+     font-family: 'VotrePolice', sans-serif;
 }
 
 h1,

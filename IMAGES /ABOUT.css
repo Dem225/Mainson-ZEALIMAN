@@ -17,6 +17,7 @@ body {
     color: var(--dark);
     background: #fff;
     -webkit-font-smoothing: antialiased;
+    font-family: 'VotrePolice', sans-serif;
 }
 
 .container {
