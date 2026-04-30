@@ -213,6 +213,10 @@ nav a:hover {
     border-radius: 4px;
     transition: opacity var(--transition-slow);
 }
+.feature-img-placeholder img{
+    height: 100%;
+    width: 100%;
+}
 
 /* -- Hover effect for the texture images -- */
 .feature-card:hover .feature-img-placeholder {
@@ -295,15 +299,16 @@ nav a:hover {
 
 /* Placeholder images (à remplacer par des URL réelles) */
 .img1 {
-    background: url("./2.png");
+    background-image: url("./20.png");
+    
 }
 
 .img2 {
-    background-image: url('./1.png');
+    background-image: url('./5.png');
 }
 
 .img3 {
-    background-image: url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=600');
+    background-image: url('./11.png');
 }
 
 .badge {

@@ -108,7 +108,7 @@ header {
 /* --- Hero --- */
 .hero {
     height: 85vh;
-    background: url('https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=1400') center/cover;
+    background: url('../histoire3.jpg') center/cover;
     position: relative;
     display: flex;
     align-items: center;
@@ -157,7 +157,7 @@ header {
 
 .abstract-pattern {
     height: 450px;
-    background: linear-gradient(135deg, #091426, #1a2a44);
+   background: url(../recontre.jpeg)  center/cover;;
     border-radius: 4px;
     position: relative;
     overflow: hidden;
@@ -228,7 +228,7 @@ header {
 
 .innovation-images {
     position: relative;
-    height: 500px;
+    height: 590px;
 }
 
 .img-top {
