@@ -1,15 +1,27 @@
-/* --- Global & Fonts --- */
+/* ============================================================
+   ABOUT.CSS — ZEALIMAN Page Histoire
+   ============================================================ */
+
+/* --- Variables --- */
 :root {
-    --dark: #091426;
-    --grey: #585f6a;
-    --soft: #f8faff;
+    --dark:       #091426;
+    --grey:       #585f6a;
+    --soft:       #f8faff;
+    --border:     #f0f0f0;
     --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-* {
+/* --- Reset --- */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -17,7 +29,7 @@ body {
     color: var(--dark);
     background: #fff;
     -webkit-font-smoothing: antialiased;
-    font-family: 'VotrePolice', sans-serif;
+    line-height: 1.6;
 }
 
 .container {
@@ -40,12 +52,14 @@ body {
     margin-bottom: 20px;
 }
 
-/* --- Header --- */
+/* ============================================================
+   HEADER
+   ============================================================ */
 header {
-    height: 90px;
+    height: 70px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     background: white;
@@ -63,8 +77,10 @@ header {
     font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 5px;
+    cursor: pointer;
 }
 
+/* --- Nav desktop --- */
 .desktop-nav a {
     text-decoration: none;
     color: var(--grey);
@@ -72,28 +88,64 @@ header {
     font-weight: 600;
     letter-spacing: 2px;
     margin: 0 20px;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 4px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.3s;
+}
+
+.desktop-nav a:hover {
+    color: var(--dark);
 }
 
 .desktop-nav a.active {
     color: var(--dark);
-    border-bottom: 2px solid var(--dark);
-    padding-bottom: 5px;
 }
 
+.desktop-nav a.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--dark);
+}
+
+/* --- Icônes header --- */
 .header-icons {
     display: flex;
     gap: 25px;
     align-items: center;
 }
 
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+    font-size: 24px;
+    color: var(--dark);
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.material-symbols-outlined:hover {
+    opacity: 0.6;
+}
+
+/* --- Badge panier --- */
 .cart-wrapper {
     position: relative;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .cart-count {
     position: absolute;
-    top: -5px;
+    top: -6px;
     right: -8px;
     background: var(--dark);
     color: white;
@@ -101,12 +153,16 @@ header {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
+    font-weight: 700;
+    transition: transform 0.2s;
 }
 
-/* --- Hero --- */
+/* ============================================================
+   HERO
+   ============================================================ */
 .hero {
     height: 85vh;
     background: url('../histoire3.jpg') center/cover;
@@ -121,7 +177,7 @@ header {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.18);
 }
 
 .hero-content {
@@ -133,9 +189,18 @@ header {
     font-size: 3.5rem;
     font-weight: 200;
     margin-bottom: 20px;
+    line-height: 1.1;
 }
 
-/* --- Sections Layout --- */
+.hero-content p {
+    font-size: 1rem;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+/* ============================================================
+   NOTRE HISTOIRE
+   ============================================================ */
 .story-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -158,7 +223,7 @@ header {
 
 .abstract-pattern {
     height: 450px;
-   background: url(../recontre.jpeg)  center/cover;;
+    background: url('../recontre.jpeg') center/cover;
     border-radius: 4px;
     position: relative;
     overflow: hidden;
@@ -168,10 +233,18 @@ header {
     content: "";
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(212, 175, 55, 0.05) 10px, rgba(212, 175, 55, 0.05) 12px);
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(212, 175, 55, 0.05) 10px,
+        rgba(212, 175, 55, 0.05) 12px
+    );
 }
 
-/* --- Cards --- */
+/* ============================================================
+   ENGAGEMENTS
+   ============================================================ */
 .bg-light {
     background: var(--soft);
 }
@@ -179,6 +252,11 @@ header {
 .center-title {
     text-align: center;
     margin-bottom: 70px;
+}
+
+.center-title h2 {
+    font-size: 2.2rem;
+    font-weight: 300;
 }
 
 .cards-grid {
@@ -197,14 +275,15 @@ header {
 
 .engagement-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
     border-color: #eee;
 }
 
-.engagement-card span {
-    font-size: 35px;
+.engagement-card > .material-symbols-outlined {
+    font-size: 35px !important;
     margin-bottom: 25px;
     display: block;
+    color: var(--dark);
 }
 
 .engagement-card h3 {
@@ -219,7 +298,9 @@ header {
     font-weight: 300;
 }
 
-/* --- Innovation --- */
+/* ============================================================
+   INNOVATION
+   ============================================================ */
 .innovation-flex {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
@@ -239,6 +320,7 @@ header {
     left: 0;
     z-index: 2;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
 }
 
 .img-bottom {
@@ -249,6 +331,20 @@ header {
     z-index: 1;
     filter: grayscale(1);
     opacity: 0.6;
+    border-radius: 2px;
+}
+
+.innovation-content h3 {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.innovation-content p {
+    color: var(--grey);
+    font-weight: 300;
+    line-height: 1.8;
 }
 
 .custom-checks {
@@ -261,11 +357,18 @@ header {
     align-items: center;
     gap: 10px;
     font-size: 13px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-weight: 600;
 }
 
-/* --- CTA Section --- */
+.custom-checks .material-symbols-outlined {
+    font-size: 18px !important;
+    color: var(--dark);
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
 .cta-section {
     background: var(--dark);
     padding: 100px 0;
@@ -277,6 +380,7 @@ header {
     font-size: 2.8rem;
     font-weight: 200;
     margin-bottom: 40px;
+    line-height: 1.2;
 }
 
 .btn-primary {
@@ -289,9 +393,16 @@ header {
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 2px;
+    transition: opacity 0.3s;
 }
 
-/* --- Footer --- */
+.btn-primary:hover {
+    opacity: 0.85;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
 footer {
     padding: 60px 0;
     border-top: 1px solid #eee;
@@ -303,12 +414,21 @@ footer {
     align-items: center;
 }
 
+.footer-brand .logo {
+    margin-bottom: 12px;
+}
+
 .socials a {
     text-decoration: none;
     color: #999;
     margin-left: 25px;
     font-size: 11px;
     letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.socials a:hover {
+    color: var(--dark);
 }
 
 .footer-copy {
@@ -317,71 +437,91 @@ footer {
     letter-spacing: 1px;
 }
 
-
-
-
 /* ============================================================
-   RESPONSIVITÉ STABLE - PAGE ABOUT ZEALIMAN
+   RESPONSIVE — TABLETTE (768px à 1023px)
    ============================================================ */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        padding: 0 30px;
+    }
 
-/* Sécurité anti-débordement horizontal */
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-    width: 100%;
+    .story-grid,
+    .innovation-flex {
+        gap: 40px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
 }
 
-/* --- MOBILE (0px à 767px) --- */
+/* ============================================================
+   RESPONSIVE — MOBILE (max 767px)
+   ============================================================ */
 @media (max-width: 767px) {
+
     body {
-        padding-bottom: 70px; /* Espace pour la barre du bas */
+        padding-bottom: 70px;
     }
 
     .container {
         padding: 0 20px;
-        width: 100%;
     }
 
     .section-spacing {
-        padding: 60px 0; /* Espacement réduit sur mobile */
+        padding: 60px 0;
     }
 
-    /* 1. Header & Navigation Bas */
+    /* Header */
     header {
-        height: 70px;
+        height: 60px;
     }
 
+    .logo {
+        font-size: 1rem;
+        letter-spacing: 3px;
+    }
+
+    /* Cacher nav du haut */
+    .nav-wrapper .desktop-nav {
+        display: none;
+    }
+
+    /* Nav fixe en bas */
     .desktop-nav {
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 70px;
-        background: #ffffff;
+        height: 65px;
+        background: #fff;
         display: flex !important;
         justify-content: space-around;
         align-items: center;
         border-top: 1px solid #eee;
-        margin: 0;
-        padding: 0;
         z-index: 9999;
+        padding-bottom: env(safe-area-inset-bottom);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
     }
 
     .desktop-nav a {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 0 !important;
+        margin: 0;
         font-size: 8px;
         gap: 4px;
         width: 25%;
         text-align: center;
+        padding-bottom: 0;
     }
 
-    .desktop-nav a.active {
-        border-bottom: none;
-        padding-bottom: 0;
-        color: var(--dark);
+    .desktop-nav a.active::after {
+        display: none;
     }
 
     .mobile-only {
@@ -389,18 +529,18 @@ html, body {
         font-size: 22px !important;
     }
 
-    /* 2. Hero Section */
+    /* Hero */
     .hero {
-        height: 60vh; /* Moins haut sur mobile */
+        height: 60vh;
     }
 
     .hero-content h1 {
         font-size: 2rem;
     }
 
-    /* 3. Story Grid (Notre Histoire) */
+    /* Histoire */
     .story-grid {
-        grid-template-columns: 1fr; /* Une seule colonne */
+        grid-template-columns: 1fr;
         gap: 40px;
         text-align: center;
     }
@@ -410,12 +550,12 @@ html, body {
     }
 
     .abstract-pattern {
-        height: 250px; /* Pattern plus petit */
+        height: 250px;
     }
 
-    /* 4. Valeurs (Cards) */
+    /* Engagements */
     .cards-grid {
-        grid-template-columns: 1fr; /* Empile les cartes */
+        grid-template-columns: 1fr;
         gap: 20px;
     }
 
@@ -423,31 +563,33 @@ html, body {
         padding: 40px 20px;
     }
 
-    /* 5. Innovation Section */
+    /* Innovation */
     .innovation-flex {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
     .innovation-images {
-        height: 350px;
+        height: 300px;
     }
 
     .img-top, .img-bottom {
-        width: 70%;
+        width: 65%;
     }
 
-    /* 6. CTA Section */
+    /* CTA */
     .cta-box h2 {
         font-size: 1.8rem;
     }
 
     .btn-primary {
+        display: block;
         width: 100%;
+        text-align: center;
         padding: 18px 20px;
     }
 
-    /* 7. Footer */
+    /* Footer */
     .footer-grid {
         flex-direction: column;
         gap: 30px;
@@ -459,22 +601,9 @@ html, body {
     }
 }
 
-/* --- TABLETTE (768px à 1023px) --- */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .container {
-        padding: 0 30px;
-    }
-
-    .story-grid, .innovation-flex {
-        gap: 40px;
-    }
-
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
-    }
-}
-
-/* --- DESKTOP (Cache les icônes du menu) --- */
+/* ============================================================
+   RESPONSIVE — DESKTOP (1024px+)
+   ============================================================ */
 @media (min-width: 1024px) {
     .mobile-only {
         display: none !important;

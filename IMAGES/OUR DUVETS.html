@@ -85,10 +85,15 @@
                     <h3>L'Hiver Arctique</h3>
                     <div class="price-row">
                         <span class="price">45 000 FCFA</span>
+                        <!-- Bouton flèche desktop -->
                         <button class="arrow-btn" onclick="addToCart('L\'Hiver Arctique', 45000, this)">
                             <span class="material-symbols-outlined">arrow_forward</span>
                         </button>
                     </div>
+                    <!-- Bouton texte mobile -->
+                    <button class="btn-add-mobile" onclick="addToCart('L\'Hiver Arctique', 45000, this)">
+                        + Ajouter au panier
+                    </button>
                 </div>
             </div>
 
@@ -105,6 +110,9 @@
                             <span class="material-symbols-outlined">arrow_forward</span>
                         </button>
                     </div>
+                    <button class="btn-add-mobile" onclick="addToCart('La Brise d\'Été', 35000, this)">
+                        + Ajouter au panier
+                    </button>
                 </div>
             </div>
 
@@ -121,6 +129,9 @@
                             <span class="material-symbols-outlined">arrow_forward</span>
                         </button>
                     </div>
+                    <button class="btn-add-mobile" onclick="addToCart('L\'Équilibre 365', 38000, this)">
+                        + Ajouter au panier
+                    </button>
                 </div>
             </div>
 
@@ -163,10 +174,22 @@
             badge.style.transform = 'scale(1.6)';
             setTimeout(() => badge.style.transform = 'scale(1)', 300);
 
-            // Feedback bouton
+            // Feedback bouton flèche (desktop)
             const icon = btn.querySelector('.material-symbols-outlined');
-            icon.textContent = 'check';
-            setTimeout(() => icon.textContent = 'arrow_forward', 1500);
+            if (icon) {
+                icon.textContent = 'check';
+                setTimeout(() => icon.textContent = 'arrow_forward', 1500);
+            }
+
+            // Feedback bouton texte (mobile)
+            if (btn.classList.contains('btn-add-mobile')) {
+                btn.textContent = '✓ Ajouté !';
+                btn.style.background = '#0F6E56';
+                setTimeout(() => {
+                    btn.textContent = '+ Ajouter au panier';
+                    btn.style.background = '';
+                }, 1500);
+            }
         }
 
         /* ===== FILTRES ===== */
@@ -177,19 +200,13 @@
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-
                 const filter = btn.dataset.filter;
                 cards.forEach(card => {
-                    if (filter === 'tout' || card.dataset.category === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    card.style.display = (filter === 'tout' || card.dataset.category === filter) ? 'block' : 'none';
                 });
             });
         });
 
-        // Init
         updateBadge();
     </script>
 

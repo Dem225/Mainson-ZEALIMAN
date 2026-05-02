@@ -7,48 +7,47 @@
     <title>ZEALIMAN | L'excellence du sommeil</title>
     <link rel="stylesheet" href="./ABOUT.css">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" />
 </head>
 
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="container nav-wrapper">
-            <div class="menu-trigger">
-
-            </div>
             <div class="logo">ZEALIMAN</div>
             <nav class="desktop-nav">
                 <a href="../index.html">
                     <span class="material-symbols-outlined mobile-only">home</span>
-
-                    ACCUEIL</a>
+                    <span class="nav-text">ACCUEIL</span>
+                </a>
                 <a href="./OUR DUVETS.html">
                     <span class="material-symbols-outlined mobile-only">bed</span>
-
-                    VOS CONFORT </a>
+                    <span class="nav-text">VOS CONFORT</span>
+                </a>
                 <a href="./SLEEP GUIDE.html">
                     <span class="material-symbols-outlined mobile-only">auto_awesome</span>
-
-                    SOINS DU SOMMEIL </a>
+                    <span class="nav-text">SOINS DU SOMMEIL</span>
+                </a>
                 <a href="#" class="active">
                     <span class="material-symbols-outlined mobile-only">history_edu</span>
-
-                    VOTRE HISTOIRE </a>
+                    <span class="nav-text">VOTRE HISTOIRE</span>
+                </a>
             </nav>
             <div class="header-icons">
                 <span class="material-symbols-outlined">search</span>
                 <div class="cart-wrapper">
                     <span class="material-symbols-outlined">shopping_bag</span>
-                    <span class="cart-count">0</span>
+                    <span class="cart-count" id="cart-count">0</span>
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- CONTENU -->
     <main>
+
+        <!-- Hero -->
         <section class="hero">
             <div class="hero-overlay"></div>
             <div class="container hero-content">
@@ -57,6 +56,7 @@
             </div>
         </section>
 
+        <!-- Notre Histoire -->
         <section class="container section-spacing">
             <div class="story-grid">
                 <div class="story-text">
@@ -73,6 +73,7 @@
             </div>
         </section>
 
+        <!-- Nos Engagements -->
         <section class="bg-light section-spacing">
             <div class="container">
                 <div class="center-title">
@@ -99,13 +100,12 @@
             </div>
         </section>
 
+        <!-- Innovation -->
         <section class="container section-spacing">
             <div class="innovation-flex">
                 <div class="innovation-images">
-                    <img src="../cat.jpeg" alt="Plume"
-                        class="img-top">
-                    <img src="../unique.jpeg" alt="Laboratoire"
-                        class="img-bottom">
+                    <img src="../cat.jpeg" alt="Plume" class="img-top">
+                    <img src="../unique.jpeg" alt="Laboratoire" class="img-bottom">
                 </div>
                 <div class="innovation-content">
                     <span class="eyebrow">INNOVATION</span>
@@ -113,23 +113,30 @@
                     <p>Le sommeil est le fondement de la santé. Chez ZEALIMAN, nous collaborons avec des experts en
                         ergonomie pour comprendre la régulation thermique.</p>
                     <ul class="custom-checks">
-                        <li><span class="material-symbols-outlined">check_circle</span> Régulation thermique naturelle
+                        <li>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Régulation thermique naturelle
                         </li>
-                        <li><span class="material-symbols-outlined">check_circle</span> Fibres hypoallergéniques premium
+                        <li>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Fibres hypoallergéniques premium
                         </li>
                     </ul>
                 </div>
             </div>
         </section>
 
+        <!-- CTA -->
         <section class="cta-section">
             <div class="container cta-box">
                 <h2>Commencez votre voyage vers le repos parfait.</h2>
                 <a href="./Collections.html" class="btn-primary">EXPLORER LA COLLECTION</a>
             </div>
         </section>
+
     </main>
 
+    <!-- FOOTER -->
     <footer>
         <div class="container footer-grid">
             <div class="footer-brand">
@@ -146,6 +153,22 @@
         </div>
     </footer>
 
-</body>
+    <!-- JAVASCRIPT -->
+    <script>
+        /* ===== PANIER ===== */
+        let cart = JSON.parse(localStorage.getItem('zealiman-cart')) || [];
 
+        function updateBadge() {
+            const total = cart.reduce((sum, item) => sum + item.qty, 0);
+            const badge = document.getElementById('cart-count');
+            if (!badge) return;
+            badge.textContent = total;
+            badge.style.display = total === 0 ? 'none' : 'flex';
+        }
+
+        // Init au chargement
+        updateBadge();
+    </script>
+
+</body>
 </html>
