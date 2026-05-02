@@ -1,142 +1,139 @@
 /* ============================================================
-   CART.CSS — ZEALIMAN Drawer Panier (à inclure sur toutes les pages)
+   CART.CSS — ZEALIMAN Drawer Panier
+   Responsive : Mobile / Tablette / Desktop / Grand écran
    ============================================================ */
 
-/* --- Overlay fond foncé --- */
+/* ── OVERLAY ── */
 .cart-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(9, 20, 38, 0.45);
+    background: rgba(9, 20, 38, 0.5);
     z-index: 9998;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.35s ease;
+    -webkit-tap-highlight-color: transparent;
 }
-
 .cart-overlay.open {
     opacity: 1;
     pointer-events: all;
 }
 
-/* --- Drawer (panneau latéral droit) --- */
+/* ── DRAWER ── */
 .cart-drawer {
     position: fixed;
     top: 0;
     right: 0;
-    width: 420px;
+    width: 440px;
     max-width: 100vw;
     height: 100%;
-    background: #fff;
+    height: 100dvh;
+    background: #ffffff;
     z-index: 9999;
     display: flex;
     flex-direction: column;
     transform: translateX(100%);
     transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -8px 0 40px rgba(9, 20, 38, 0.12);
+    box-shadow: -6px 0 40px rgba(9, 20, 38, 0.13);
+    overflow: hidden;
 }
-
 .cart-drawer.open {
     transform: translateX(0);
 }
 
-/* --- En-tête du drawer --- */
+/* ── HEADER ── */
 .cart-drawer-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 28px 28px 20px;
+    padding: 24px 28px 18px;
     border-bottom: 1px solid #eeeeee;
     flex-shrink: 0;
+    padding-top: max(24px, env(safe-area-inset-top));
 }
-
 .cart-drawer-title {
     font-family: 'League Spartan', 'Manrope', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: #091426;
 }
-
 .cart-drawer-count {
     font-size: 12px;
     color: #585f6a;
     font-weight: 400;
+    margin-left: 8px;
     letter-spacing: 0;
     text-transform: none;
-    margin-left: 8px;
 }
-
 .cart-drawer-close {
     background: none;
     border: none;
     cursor: pointer;
-    color: #091426;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     transition: background 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
-
-.cart-drawer-close:hover {
-    background: #f4f7ff;
-}
-
+.cart-drawer-close:hover  { background: #f4f7ff; }
+.cart-drawer-close:active { background: #e8edf5; }
 .cart-drawer-close .material-symbols-outlined {
     font-size: 22px;
     color: #091426;
 }
 
-/* --- Corps du drawer (liste des articles) --- */
+/* ── CORPS ── */
 .cart-drawer-body {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     padding: 0;
     scrollbar-width: thin;
     scrollbar-color: #e0e0e0 transparent;
 }
-
-.cart-drawer-body::-webkit-scrollbar {
-    width: 4px;
-}
-
+.cart-drawer-body::-webkit-scrollbar { width: 3px; }
 .cart-drawer-body::-webkit-scrollbar-thumb {
     background: #e0e0e0;
     border-radius: 2px;
 }
 
-/* --- Panier vide --- */
+/* ── PANIER VIDE ── */
 .cart-empty-state {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 300px;
     height: 100%;
-    gap: 14px;
-    padding: 40px 28px;
+    gap: 12px;
+    padding: 40px 24px;
     text-align: center;
     color: #585f6a;
 }
-
 .cart-empty-state .empty-icon {
-    font-size: 48px;
-    opacity: 0.25;
+    font-size: 52px;
+    opacity: 0.2;
     font-style: normal;
+    line-height: 1;
 }
-
 .cart-empty-state p {
     font-size: 14px;
     font-weight: 300;
     line-height: 1.7;
+    color: #585f6a;
 }
-
 .cart-empty-state a {
-    margin-top: 10px;
+    margin-top: 8px;
     display: inline-block;
-    padding: 12px 30px;
+    padding: 14px 32px;
     background: #091426;
     color: white;
     font-size: 10px;
@@ -145,160 +142,153 @@
     text-transform: uppercase;
     text-decoration: none;
     transition: opacity 0.2s;
+    border-radius: 2px;
+    touch-action: manipulation;
 }
+.cart-empty-state a:hover { opacity: 0.82; }
 
-.cart-empty-state a:hover {
-    opacity: 0.8;
-}
-
-/* --- Item panier --- */
+/* ── ARTICLE ── */
 .cart-line-item {
     display: flex;
     align-items: flex-start;
-    gap: 16px;
-    padding: 20px 28px;
+    gap: 14px;
+    padding: 18px 28px;
     border-bottom: 1px solid #f0f0f0;
     transition: background 0.15s;
 }
-
-.cart-line-item:hover {
-    background: #fafbff;
-}
+.cart-line-item:last-child { border-bottom: none; }
+.cart-line-item:hover { background: #fafbff; }
 
 .cart-item-img {
-    width: 80px;
-    height: 90px;
+    width: 72px;
+    height: 84px;
     object-fit: cover;
     border-radius: 4px;
     background: #f4f7ff;
     flex-shrink: 0;
 }
-
 .cart-item-img-placeholder {
-    width: 80px;
-    height: 90px;
+    width: 72px;
+    height: 84px;
     background: #f4f7ff;
     border-radius: 4px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
+    font-size: 26px;
 }
-
 .cart-item-info {
     flex: 1;
     min-width: 0;
 }
-
 .cart-item-name {
     font-size: 13px;
     font-weight: 600;
     color: #091426;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 .cart-item-unit-price {
     font-size: 11px;
     color: #585f6a;
     font-weight: 300;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
-/* --- Contrôle de quantité dans le drawer --- */
+/* ── QUANTITÉ ── */
 .cart-qty-control {
     display: flex;
     align-items: center;
-    gap: 0;
     border: 1px solid #eeeeee;
     border-radius: 2px;
     width: fit-content;
+    overflow: hidden;
 }
-
 .cart-qty-btn {
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
     color: #091426;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 0.15s;
     font-family: inherit;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    min-width: 44px;
 }
-
-.cart-qty-btn:hover {
-    background: #f4f7ff;
-}
-
+.cart-qty-btn:hover  { background: #f4f7ff; }
+.cart-qty-btn:active { background: #e8edf5; }
 .cart-qty-num {
-    width: 34px;
+    min-width: 36px;
     text-align: center;
     font-size: 13px;
     font-weight: 600;
     color: #091426;
     border-left: 1px solid #eeeeee;
     border-right: 1px solid #eeeeee;
-    height: 30px;
+    height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 4px;
 }
 
-/* --- Prix sous-total item + bouton supprimer --- */
+/* ── PRIX & RETRAIT ── */
 .cart-item-right {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 16px;
+    justify-content: space-between;
+    gap: 12px;
     flex-shrink: 0;
+    min-height: 84px;
 }
-
 .cart-item-subtotal {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
     color: #091426;
+    white-space: nowrap;
 }
-
 .cart-item-remove {
     background: none;
     border: none;
     cursor: pointer;
-    color: #bbb;
+    color: #ccc;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     transition: color 0.2s;
-    padding: 0;
+    padding: 4px 0;
     font-family: inherit;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
+.cart-item-remove:hover  { color: #c0392b; }
+.cart-item-remove:active { color: #a93226; }
 
-.cart-item-remove:hover {
-    color: #c0392b;
-}
-
-/* --- Pied du drawer (total + bouton) --- */
+/* ── PIED DE PAGE ── */
 .cart-drawer-footer {
     border-top: 1px solid #eeeeee;
-    padding: 22px 28px 28px;
+    padding: 20px 28px;
+    padding-bottom: max(20px, calc(env(safe-area-inset-bottom) + 16px));
     flex-shrink: 0;
-    background: #fff;
+    background: #ffffff;
 }
-
 .cart-subtotal-row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
-
 .cart-subtotal-label {
     font-size: 11px;
     font-weight: 700;
@@ -306,25 +296,22 @@
     text-transform: uppercase;
     color: #585f6a;
 }
-
 .cart-subtotal-amount {
     font-family: 'League Spartan', 'Manrope', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     font-weight: 600;
     color: #091426;
 }
-
 .cart-shipping-note {
     font-size: 11px;
-    color: #aaa;
+    color: #bbb;
     font-weight: 300;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
-
 .cart-checkout-btn {
     display: block;
     width: 100%;
-    padding: 17px 20px;
+    padding: 16px 20px;
     background: #091426;
     color: white;
     border: none;
@@ -337,12 +324,12 @@
     transition: background 0.2s, transform 0.15s;
     text-align: center;
     text-decoration: none;
+    border-radius: 2px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
-
-.cart-checkout-btn:hover {
-    background: #1a2a44;
-    transform: translateY(-1px);
-}
+.cart-checkout-btn:hover  { background: #1a2a44; transform: translateY(-1px); }
+.cart-checkout-btn:active { background: #0a1520; transform: scale(0.99); }
 
 .cart-continue-btn {
     display: block;
@@ -359,38 +346,123 @@
     cursor: pointer;
     margin-top: 10px;
     transition: border-color 0.2s, color 0.2s;
+    border-radius: 2px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
+.cart-continue-btn:hover  { border-color: #091426; color: #091426; }
+.cart-continue-btn:active { background: #f4f7ff; }
 
-.cart-continue-btn:hover {
-    border-color: #091426;
-    color: #091426;
-}
-
-/* --- Animation d'ajout (flash vert sur l'item) --- */
+/* ── ANIMATION AJOUT ── */
 @keyframes cartItemPop {
-    0% { background: #e8f5e9; }
+    0%   { background: #e8f5e9; }
     100% { background: transparent; }
 }
-
 .cart-line-item.just-added {
-    animation: cartItemPop 0.6s ease forwards;
+    animation: cartItemPop 0.7s ease forwards;
 }
 
-/* --- RESPONSIVE MOBILE --- */
+/* ============================================================
+   TABLETTE (max 768px) — drawer 88% de largeur, depuis la droite
+   ============================================================ */
+@media (max-width: 768px) {
+    .cart-drawer {
+        width: 88vw;
+        top: 0;
+        height: 100dvh;
+        transform: translateX(100%);
+        border-radius: 0;
+    }
+    .cart-drawer.open { transform: translateX(0); }
+
+    .cart-drawer-header {
+        padding: 20px 20px 14px;
+        padding-top: max(20px, env(safe-area-inset-top));
+    }
+    .cart-line-item { padding: 16px 20px; gap: 12px; }
+    .cart-drawer-footer {
+        padding: 16px 20px;
+        padding-bottom: max(16px, calc(env(safe-area-inset-bottom) + 12px));
+    }
+    .cart-item-img,
+    .cart-item-img-placeholder { width: 64px; height: 74px; }
+    .cart-item-img-placeholder { font-size: 22px; }
+}
+
+/* ============================================================
+   MOBILE (max 480px) — drawer monte depuis le bas, plein écran
+   ============================================================ */
 @media (max-width: 480px) {
     .cart-drawer {
         width: 100vw;
+        top: auto;
+        bottom: 0;
+        right: 0;
+        height: 92dvh;
+        border-radius: 20px 20px 0 0;
+        /* Animation depuis le bas */
+        transform: translateY(100%);
+        transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 -6px 40px rgba(9, 20, 38, 0.15);
     }
+    .cart-drawer.open { transform: translateY(0); }
 
+    /* Barre de drag */
     .cart-drawer-header {
-        padding: 22px 20px 16px;
+        position: relative;
+        padding: 22px 20px 14px;
+    }
+    .cart-drawer-header::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36px;
+        height: 4px;
+        background: #e0e0e0;
+        border-radius: 2px;
     }
 
-    .cart-line-item {
-        padding: 16px 20px;
-    }
-
+    .cart-drawer-title { font-size: 0.9rem; letter-spacing: 2px; }
+    .cart-line-item { padding: 14px 16px; gap: 10px; }
+    .cart-item-img,
+    .cart-item-img-placeholder { width: 58px; height: 68px; }
+    .cart-item-img-placeholder { font-size: 20px; }
+    .cart-item-name { font-size: 12px; }
+    .cart-item-subtotal { font-size: 12px; }
+    .cart-qty-btn { min-width: 38px; height: 38px; }
+    .cart-qty-num  { height: 38px; }
     .cart-drawer-footer {
-        padding: 18px 20px 24px;
+        padding: 14px 16px;
+        padding-bottom: max(14px, calc(env(safe-area-inset-bottom) + 10px));
     }
+    .cart-subtotal-amount { font-size: 1.2rem; }
+    .cart-checkout-btn { padding: 16px; font-size: 10px; }
+    .cart-continue-btn { padding: 12px; font-size: 9px; }
+    .cart-empty-state { padding: 30px 20px; }
+    .cart-empty-state .empty-icon { font-size: 44px; }
+}
+
+/* ============================================================
+   TRÈS PETIT MOBILE (max 360px) — petits Android
+   ============================================================ */
+@media (max-width: 360px) {
+    .cart-drawer { height: 95dvh; }
+    .cart-line-item { padding: 12px 14px; gap: 8px; }
+    .cart-item-img,
+    .cart-item-img-placeholder { width: 52px; height: 62px; }
+    .cart-item-img-placeholder { font-size: 18px; }
+    .cart-drawer-title { font-size: 0.82rem; letter-spacing: 1.5px; }
+    .cart-item-name { font-size: 11px; }
+}
+
+/* ============================================================
+   GRAND ÉCRAN (min 1200px) — drawer plus large
+   ============================================================ */
+@media (min-width: 1200px) {
+    .cart-drawer { width: 460px; }
+    .cart-line-item { padding: 20px 32px; }
+    .cart-drawer-header { padding: 28px 32px 20px; }
+    .cart-drawer-footer { padding: 22px 32px 28px; }
 }

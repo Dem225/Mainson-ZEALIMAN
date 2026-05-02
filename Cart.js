@@ -6,6 +6,18 @@
 (function () {
 
     /* ──────────────────────────────────────────────
+       0. DÉTECTION DU CHEMIN DE BASE
+       Fonctionne sur toutes les pages, peu importe
+       leur emplacement dans les dossiers.
+    ────────────────────────────────────────────── */
+    function getBasePath() {
+        // Vérifie si la page actuelle est dans un sous-dossier
+        const path = window.location.pathname;
+        const inSubfolder = path.includes('/IMAGES/');
+        return inSubfolder ? '../' : './';
+    }
+
+    /* ──────────────────────────────────────────────
        1. INJECTION DU HTML DU DRAWER
     ────────────────────────────────────────────── */
     function injectDrawer() {
@@ -91,11 +103,12 @@
         }
 
         if (cart.length === 0) {
+            const base = getBasePath();
             body.innerHTML = `
                 <div class="cart-empty-state">
                     <i class="empty-icon">🛍️</i>
                     <p>Votre panier est vide.<br>Découvrez nos collections.</p>
-                    <a href="./IMAGES/Collections.html" onclick="closeCart()">Explorer la boutique</a>
+                    <a href="${base}IMAGES/Collections.html" onclick="closeCart()">Explorer la boutique</a>
                 </div>
             `;
             if (footer) footer.style.display = 'none';
