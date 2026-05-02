@@ -1,111 +1,172 @@
+/* ============================================================
+   STYLE.CSS — ZEALIMAN Homepage
+   ============================================================ */
+
+/* --- Variables --- */
 :root {
-    --dark: #1a1a1a;
-    --light-grey: #f9f9f9;
-    --blue-bg: #eff4f9;
-    /* Bleu très pâle, corrigé */
-    --dark-blue: #242c3d;
-    --text-muted: #777;
-    /* Adouci un peu plus */
+    --dark:            #1a1a1a;
+    --dark-blue:       #242c3d;
+    --blue-bg:         #eff4f9;
+    --text-muted:      #777;
+    --border:          #eee;
     --transition-fast: 0.25s ease;
     --transition-slow: 0.4s ease-out;
 }
 
-* {
+/* --- Reset --- */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
-    /* Corps par défaut */
     color: var(--dark);
     line-height: 1.6;
-    background-color: white;
-     font-family: 'VotrePolice', sans-serif;
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-.logo,
-nav a,
-.subtitle,
-.durable-badge {
+h1, h2, h3, h4,
+.logo, nav a,
+.subtitle, .durable-badge {
     font-family: 'League Spartan', sans-serif;
-    /* Titres géo-modernes */
     font-weight: 400;
-    /* Plus léger comme l'original */
 }
 
-/* --- Utilities --- */
+/* --- Utilitaires --- */
 .hover-animate {
     transition: transform var(--transition-slow), box-shadow var(--transition-slow);
 }
 
 .hover-animate:hover {
     transform: translateY(-8px);
-    /* Légère élévation au survol */
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-    /* Ombre douce qui apparaît */
 }
 
-/* --- Header --- */
+/* ============================================================
+   HEADER
+   ============================================================ */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%;
-    /* Légèrement plus compact */
+    padding: 0 5%;
+    height: 70px;
     background: #fff;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .logo {
+    font-family: 'League Spartan', sans-serif;
     font-weight: 600;
     letter-spacing: 4px;
     font-size: 1.25rem;
     cursor: pointer;
 }
 
-nav a {
+/* --- Navigation desktop --- */
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.main-nav a {
     text-decoration: none;
     color: var(--dark);
     margin: 0 18px;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+    font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     transition: color var(--transition-fast);
+    position: relative;
+    padding-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
 }
 
-nav a:hover {
+.main-nav a:hover {
     color: #555;
 }
 
+.main-nav a.active {
+    color: var(--dark);
+}
+
+.main-nav a.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--dark);
+}
+
+/* --- Icônes header --- */
 .header-icons {
     display: flex;
+    align-items: center;
     gap: 15px;
 }
 
-.icon-btn {
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+    font-size: 24px;
+    color: #091426;
     cursor: pointer;
-    font-size: 1.1rem;
-    transition: opacity var(--transition-fast);
+    transition: opacity 0.3s ease;
 }
 
-.icon-btn:hover {
-    opacity: 0.7;
+.material-symbols-outlined:hover {
+    opacity: 0.6;
 }
 
-/* --- Hero --- */
+/* --- Badge panier --- */
+.cart-wrapper {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: var(--dark-blue);
+    color: white;
+    font-size: 9px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    transition: transform 0.2s;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
 .hero {
     height: 85vh;
-    /* Légèrement plus grand */
-    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-        /* Voile léger pour contraste */
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)),
         url('https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1920&q=80') center/cover;
     display: flex;
     align-items: center;
@@ -129,6 +190,7 @@ nav a:hover {
     font-weight: 300;
     margin-bottom: 30px;
     max-width: 450px;
+    opacity: 0.9;
 }
 
 .btn-dark {
@@ -148,16 +210,20 @@ nav a:hover {
     background-color: #35405a;
 }
 
-/* --- Features --- */
+/* ============================================================
+   FEATURES
+   ============================================================ */
 .features {
     padding: 80px 5%;
-    background-color: white;
+    background: white;
 }
 
 .feature-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .feature-card {
@@ -170,7 +236,7 @@ nav a:hover {
 }
 
 .white {
-    border: 1px solid #eee;
+    border: 1px solid var(--border);
 }
 
 .dark-blue {
@@ -209,18 +275,14 @@ nav a:hover {
     height: 180px;
     margin-top: 30px;
     background: #e0e0e0;
-    /* Gris placeholder corrigé */
     border-radius: 4px;
-    transition: opacity var(--transition-slow);
-}
-.feature-img-placeholder img{
-    height: 100%;
-    width: 100%;
+    overflow: hidden;
 }
 
-/* -- Hover effect for the texture images -- */
-.feature-card:hover .feature-img-placeholder {
-    opacity: 0.9;
+.feature-img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .durable-badge {
@@ -231,20 +293,24 @@ nav a:hover {
     letter-spacing: 3px;
     color: rgba(255, 255, 255, 0.4);
     pointer-events: none;
+    white-space: nowrap;
 }
 
-/* --- Products --- */
+/* ============================================================
+   PRODUITS
+   ============================================================ */
 .products {
     padding: 100px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    /* Alignement vers le bas */
     margin-bottom: 50px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border);
     padding-bottom: 15px;
 }
 
@@ -279,13 +345,6 @@ nav a:hover {
     gap: 35px;
 }
 
-/* -- Correction bug responsive rapide -- */
-@media (max-width: 900px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 .product-img {
     height: 420px;
     background-color: #f7f7f7;
@@ -294,22 +353,11 @@ nav a:hover {
     margin-bottom: 20px;
     position: relative;
     overflow: hidden;
-    /* Pour l'animation d'image */
 }
 
-/* Placeholder images (à remplacer par des URL réelles) */
-.img1 {
-    background-image: url("./20.png");
-    
-}
-
-.img2 {
-    background-image: url('./5.png');
-}
-
-.img3 {
-    background-image: url('./11.png');
-}
+.img1 { background-image: url('./20.png'); }
+.img2 { background-image: url('./5.png'); }
+.img3 { background-image: url('./11.png'); }
 
 .badge {
     background: black;
@@ -353,7 +401,7 @@ nav a:hover {
     font-size: 0.8rem;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .btn-outline:hover {
@@ -362,7 +410,9 @@ nav a:hover {
     color: white;
 }
 
-/* --- Newsletter --- */
+/* ============================================================
+   NEWSLETTER
+   ============================================================ */
 .newsletter {
     text-align: center;
     padding: 120px 5%;
@@ -392,20 +442,20 @@ nav a:hover {
     margin-top: 40px;
     display: flex;
     justify-content: center;
-    gap: 0;
-    /* Pas d'espace entre input et bouton */
 }
 
 .newsletter-form input {
     padding: 18px 25px;
     width: 350px;
     border: 1px solid #e0e0e0;
+    border-right: none;
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
+    outline: none;
 }
 
 .newsletter-form input:focus {
-    outline: 1px solid var(--dark-blue);
+    border-color: var(--dark-blue);
 }
 
 .newsletter-form button {
@@ -417,24 +467,29 @@ nav a:hover {
     letter-spacing: 1px;
     cursor: pointer;
     transition: background-color var(--transition-fast);
+    white-space: nowrap;
 }
 
 .newsletter-form button:hover {
     background-color: #35405a;
 }
 
-/* --- Footer --- */
+/* ============================================================
+   FOOTER
+   ============================================================ */
 footer {
     padding: 80px 5% 30px;
     background: #fff;
-    border-top: 1px solid #eee;
-    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
 }
 
 .footer-top {
     display: flex;
     justify-content: space-between;
     margin-bottom: 70px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .footer-brand {
@@ -442,6 +497,7 @@ footer {
 }
 
 .footer-brand h3 {
+    font-family: 'League Spartan', sans-serif;
     font-size: 1.3rem;
     letter-spacing: 3px;
     margin-bottom: 15px;
@@ -450,6 +506,7 @@ footer {
 .footer-brand p {
     font-weight: 300;
     color: var(--text-muted);
+    font-size: 0.85rem;
 }
 
 .footer-links {
@@ -458,6 +515,7 @@ footer {
 }
 
 .column h4 {
+    font-family: 'League Spartan', sans-serif;
     font-size: 0.8rem;
     letter-spacing: 1.5px;
     color: #aaa;
@@ -469,6 +527,7 @@ footer {
     text-decoration: none;
     color: var(--dark);
     margin-top: 12px;
+    font-size: 0.85rem;
     font-weight: 400;
     transition: color var(--transition-fast);
 }
@@ -483,129 +542,81 @@ footer {
     margin-top: 15px;
 }
 
+.icon-btn {
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: opacity var(--transition-fast);
+}
+
+.icon-btn:hover {
+    opacity: 0.7;
+}
+
 .footer-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #bbb;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border);
     padding-top: 25px;
     font-weight: 300;
     font-size: 0.75rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .legal a {
     text-decoration: none;
     color: #bbb;
     margin-left: 20px;
+    transition: color var(--transition-fast);
 }
 
-.legal to:hover {
+.legal a:hover {
     color: #888;
 }
 
+/* ============================================================
+   RESPONSIVE — TABLETTE (max 1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+    .hero h1 { font-size: 2.8rem; }
 
-
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
-}
-
-.logo {
-    font-weight: bold;
-    letter-spacing: 4px;
-}
-
-nav {
-    display: flex;
-    gap: 30px;
-}
-
-nav a {
-    text-decoration: none;
-    color: #666;
-    /* Couleur des liens inactifs */
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    position: relative;
-    /* IMPORTANT pour placer la ligne */
-    padding-bottom: 6px;
-    /* Espace entre le texte et la future ligne */
-    transition: color 0.3s ease;
-}
-
-/* --- LE MARQUEUR (Ligne de bas) --- */
-/* On cible le lien de la page actuelle (ajoute class="active" dans ton HTML) */
-nav a.active {
-    color: #000;
-    /* Le texte devient noir */
-}
-
-nav a.active::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    /* Colle la ligne au bas du padding */
-    left: 0;
-    width: 100%;
-    /* La ligne fait la même largeur que le texte */
-    height: 2px;
-    /* Épaisseur de la ligne */
-    background-color: #000;
-    /* Couleur de la ligne */
-}
-
-/* Optionnel : animation au survol pour les autres liens */
-nav a:hover {
-    color: #000;
-}
-
-
-.material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 200,
-        /* Trait fin très élégant */
-        'GRAD' 0,
-        'opsz' 24;
-
-    font-size: 24px;
-    color: #091426;
-    /* Ton noir ZEALIMAN */
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-}
-
-.material-symbols-outlined:hover {
-    opacity: 0.6;
-    /* Effet de transparence au survol */
-}
-
-
-/* 
-   1. MOBILE (Écrans < 768px)
-    */
-@media (max-width: 767px) {
-    body {
-        padding-bottom: 70px; /* Espace pour la barre de nav fixe en bas */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    /* Masquer le header classique pour le simplifier sur mobile */
     header {
-        padding: 15px 20px;
+        padding: 0 3%;
     }
 
+    .main-nav a {
+        margin: 0 10px;
+        font-size: 0.72rem;
+    }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (max 767px)
+   ============================================================ */
+@media (max-width: 767px) {
+
+    body {
+        padding-bottom: 70px;
+    }
+
+    /* Header simplifié */
+    header {
+        padding: 0 20px;
+        height: 60px;
+    }
+
+    /* Cacher nav du haut, afficher en bas */
     header .main-nav {
-        display: none; /* On cache la nav du haut sur mobile */
+        display: none;
     }
 
-    /* Barre de navigation FIXE en BAS */
+    /* Nav fixe en bas */
     .main-nav {
         position: fixed;
         bottom: 0;
@@ -613,29 +624,29 @@ nav a:hover {
         width: 100%;
         height: 65px;
         background: rgba(255, 255, 255, 0.98);
-        display: flex !important; /* Force l'affichage */
+        display: flex !important;
         justify-content: space-around;
         align-items: center;
-        border-top: 1px solid #eee;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        border-top: 1px solid var(--border);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
         z-index: 9999;
+        padding-bottom: env(safe-area-inset-bottom);
     }
 
     .main-nav a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 0; /* On retire les marges du desktop */
-        font-size: 9px;
+        margin: 0;
+        font-size: 8px;
         gap: 4px;
         padding-bottom: 0;
+        width: 25%;
+        justify-content: center;
     }
 
     .main-nav a.active::after {
-        bottom: -5px; /* Ajustement de la ligne active sur mobile */
+        display: none;
     }
 
-    /* Sections en 1 colonne */
+    /* Hero */
     .hero {
         height: 70vh;
         padding: 0 5%;
@@ -645,6 +656,7 @@ nav a:hover {
 
     .hero h1 { font-size: 2.2rem; }
 
+    /* Features */
     .feature-grid {
         grid-template-columns: 1fr;
     }
@@ -657,6 +669,12 @@ nav a:hover {
         gap: 20px;
     }
 
+    .durable-badge {
+        padding: 20px 30px;
+        font-size: 1.2rem;
+    }
+
+    /* Produits */
     .product-grid {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -667,16 +685,25 @@ nav a:hover {
     /* Newsletter */
     .newsletter-form {
         flex-direction: column;
-        padding: 0 20px;
+        align-items: center;
         gap: 10px;
+        padding: 0 20px;
     }
 
-    .newsletter-form input { width: 100%; }
+    .newsletter-form input {
+        width: 100%;
+        border-right: 1px solid #e0e0e0;
+    }
+
+    .newsletter-form button {
+        width: 100%;
+    }
 
     /* Footer */
     .footer-top {
         flex-direction: column;
         gap: 40px;
+        margin-bottom: 40px;
     }
 
     .footer-links {
@@ -686,55 +713,21 @@ nav a:hover {
 }
 
 /* ============================================================
-   2. TABLETTE (768px à 1024px)
-   ============================================================ */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .hero h1 { font-size: 2.8rem; }
-
-    .feature-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    header {
-        padding: 20px 3%;
-    }
-
-    nav a {
-        margin: 0 10px;
-        font-size: 11px;
-    }
-}
-
-/* ============================================================
-   3. GRANDS ÉCRANS (Dès 1025px)
+   RESPONSIVE — GRANDS ÉCRANS (1025px+)
    ============================================================ */
 @media (min-width: 1025px) {
-    /* On limite la largeur maximale pour éviter l'étirement excessif */
-    .features, .products, .newsletter, .footer-top, .section-header {
-        max-width: 1400px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* On cache les icônes de la navigation (Home, Bed...) sur PC pour le style texte pur */
     .mobile-only {
         display: none;
     }
 }
 
 /* ============================================================
-   4. ÉCRANS TV / ULTRA-LARGES (1440px+)
+   RESPONSIVE — ULTRA-LARGES (1440px+)
    ============================================================ */
 @media (min-width: 1440px) {
     .hero h1 { font-size: 4rem; }
-    
+
     .product-grid {
-        gap: 50px; /* Plus d'espace pour le luxe */
+        gap: 50px;
     }
 }
-
-
