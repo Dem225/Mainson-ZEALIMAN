@@ -571,8 +571,7 @@ nav a.active::after {
 
 /* --- BOTTOM NAV STYLE --- */
 .mobile-bottom-nav {
-    display: none;
-    /* Caché sur PC */
+    display: none; /* caché sur desktop */
     position: fixed;
     bottom: 0;
     left: 0;
@@ -580,17 +579,13 @@ nav a.active::after {
     height: 70px;
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(15px);
-    /* Effet flou premium */
     -webkit-backdrop-filter: blur(15px);
     border-top: 1px solid var(--border);
     z-index: 9999;
-    display: flex;
     justify-content: space-around;
     align-items: center;
     padding-bottom: env(safe-area-inset-bottom);
-    /* Adaptation iPhone récents */
 }
-
 .nav-item {
     text-decoration: none;
     color: var(--muted);
@@ -629,8 +624,11 @@ nav a.active::after {
 
 /* Sur écrans mobiles : on active la barre et on adapte le reste */
 @media (max-width: 768px) {
-    .mobile-bottom-nav {
-        display: flex;
+   .mobile-bottom-nav {
+     display: flex; /* seulement sur mobile */
+    /* ← Ce display:none... */
+    position: fixed;
+    display: flex;  /* ← ...est écrasé par ce display:flex juste après ! */
     }
 
     /* On cache la navigation classique du header pour éviter les doublons */
