@@ -11,6 +11,7 @@
     --border: #e2e8f0;
     --font: 'Manrope', sans-serif;
     --ease: all 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+    --navbar-height: 70px;
 }
 
 /* --- Reset --- */
@@ -41,22 +42,24 @@ body {
 .navbar {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    z-index: 1000;
+    z-index: 2000; /* ✅ Plus haut que le drawer pour rester visible */
 }
 
 .nav-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 40px;
-    height: 70px;
+    height: var(--navbar-height);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
 .logo {
@@ -64,6 +67,14 @@ body {
     letter-spacing: 5px;
     font-size: 1.2rem;
     cursor: pointer;
+    flex-shrink: 0;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
 }
 
 .nav-links a {
@@ -71,12 +82,13 @@ body {
     color: var(--secondary);
     font-size: 11px;
     font-weight: 600;
-    margin: 0 15px;
+    margin: 0 12px;
     letter-spacing: 2px;
     text-transform: uppercase;
     transition: color 0.3s;
     position: relative;
     padding-bottom: 4px;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -102,6 +114,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
+    flex-shrink: 0;
 }
 
 .material-symbols-outlined {
@@ -149,17 +162,17 @@ body {
 }
 
 /* ============================================================
-   CONTENU
+   CONTENU PRINCIPAL
    ============================================================ */
 .content {
     max-width: 1200px;
-    margin: 100px auto 80px;
-    padding: 0 40px;
+    margin: 0 auto;
+    padding: calc(var(--navbar-height) + 40px) 40px 80px; /* ✅ Décalage propre sous la navbar */
 }
 
 .page-header {
     max-width: 600px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .breadcrumb {
@@ -188,7 +201,7 @@ h1 {
 .filter-bar {
     display: flex;
     gap: 12px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     flex-wrap: wrap;
 }
 
@@ -204,6 +217,7 @@ h1 {
     letter-spacing: 1px;
     cursor: pointer;
     transition: var(--ease);
+    white-space: nowrap;
 }
 
 .filter-btn:hover,
@@ -217,7 +231,7 @@ h1 {
 .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    gap: 30px;
 }
 
 .product-card {
@@ -235,7 +249,7 @@ h1 {
     overflow: hidden;
     background: #eee;
     border-radius: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.12);
 }
 
@@ -267,11 +281,11 @@ h1 {
     text-transform: uppercase;
     color: var(--secondary);
     letter-spacing: 1px;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .product-info h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
 }
 
@@ -279,14 +293,14 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px;
-    padding-top: 15px;
+    margin-top: 12px;
+    padding-top: 12px;
     border-top: 1px solid var(--border);
 }
 
 .price {
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 /* --- Bouton flèche (desktop) --- */
@@ -301,6 +315,7 @@ h1 {
     justify-content: center;
     cursor: pointer;
     transition: var(--ease);
+    flex-shrink: 0;
 }
 
 .arrow-btn .material-symbols-outlined {
@@ -350,44 +365,125 @@ h1 {
     margin-top: 20px;
 }
 
+
 /* ============================================================
-   RESPONSIVE — TABLETTE (max 1024px)
+   RESPONSIVE — GRANDS ÉCRANS (max 1200px)
+   ============================================================ */
+@media (max-width: 1200px) {
+    .nav-links a {
+        margin: 0 8px;
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE — TABLETTE PAYSAGE (max 1024px)
    ============================================================ */
 @media (max-width: 1024px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
+        gap: 20px;
     }
 
     h1 {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
     }
 
     .nav-links a {
-        margin: 0 10px;
+        margin: 0 6px;
+        font-size: 10px;
+    }
+
+    .content {
+        padding: calc(var(--navbar-height) + 30px) 30px 60px;
     }
 }
 
+
+/* ============================================================
+   RESPONSIVE — TABLETTE PORTRAIT + PETITS LAPTOPS (max 900px)
+   ✅ Corrige le problème à 770x500 :
+      la nav desktop se réduit, le header ne déborde plus
+   ============================================================ */
+@media (max-width: 900px) {
+    :root { --navbar-height: 60px; }
+
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 1rem;
+        letter-spacing: 3px;
+    }
+
+    /* Réduire les liens de nav pour tenir sur la ligne */
+    .nav-links a {
+        margin: 0 5px;
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .header-icons {
+        gap: 10px;
+    }
+
+    .material-symbols-outlined {
+        font-size: 21px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .content {
+        padding: calc(var(--navbar-height) + 24px) 24px 50px;
+    }
+
+    .page-header {
+        margin-bottom: 30px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .filter-bar {
+        gap: 8px;
+        margin-bottom: 28px;
+    }
+
+    .filter-btn {
+        padding: 8px 18px;
+        font-size: 10px;
+    }
+}
+
+
 /* ============================================================
    RESPONSIVE — MOBILE (max 768px)
+   Bascule vers nav bas
    ============================================================ */
 @media (max-width: 768px) {
+    :root { --navbar-height: 60px; }
 
     body {
         padding-bottom: 70px;
     }
 
-    /* Navbar haut */
-    .nav-container {
-        padding: 0 20px;
-        height: 60px;
-    }
-
+    /* Cacher les liens desktop dans la navbar */
     .navbar .nav-links {
         display: none;
     }
 
-    /* Navbar bas */
+    .nav-container {
+        padding: 0 16px;
+    }
+
+    /* Nav fixe en bas */
     .mobile-bottom-nav {
         display: flex;
         position: fixed;
@@ -395,15 +491,15 @@ h1 {
         left: 0;
         right: 0;
         height: 65px;
-        background: rgba(255, 255, 255, 0.96);
+        background: rgba(255, 255, 255, 0.97);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
         border-top: 1px solid var(--border);
-        z-index: 9999;
+        z-index: 2000;
         justify-content: space-around;
         align-items: center;
         padding-bottom: env(safe-area-inset-bottom);
-        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
     }
 
     .nav-item {
@@ -412,8 +508,10 @@ h1 {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 4px;
+        gap: 3px;
         transition: color 0.3s;
+        width: 25%;
+        justify-content: center;
     }
 
     .nav-item .material-symbols-outlined {
@@ -424,7 +522,7 @@ h1 {
     .nav-text {
         font-size: 8px;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
         font-weight: 700;
         font-family: var(--font);
     }
@@ -435,59 +533,63 @@ h1 {
 
     /* Contenu */
     .content {
-        margin-top: 70px;
-        padding: 0 16px;
+        padding: calc(var(--navbar-height) + 20px) 16px 50px;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .page-header {
-        margin-bottom: 30px;
+        margin-bottom: 24px;
     }
 
     /* Filtres scroll horizontal */
     .filter-bar {
         flex-wrap: nowrap;
         overflow-x: auto;
-        padding-bottom: 10px;
+        padding-bottom: 8px;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        margin-bottom: 24px;
+        margin-bottom: 20px;
+        gap: 8px;
     }
 
-    .filter-bar::-webkit-scrollbar {
-        display: none;
-    }
+    .filter-bar::-webkit-scrollbar { display: none; }
 
     .filter-btn {
         flex-shrink: 0;
-        padding: 8px 20px;
+        padding: 8px 16px;
+        font-size: 9px;
     }
 
     /* Grille 2 colonnes */
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 10px;
     }
 
     .image-container {
         border-radius: 10px;
+        margin-bottom: 10px;
     }
 
-    /* Cacher le breadcrumb et la flèche sur mobile */
-    .arrow-btn,
-    .breadcrumb {
-        display: none;
+    .product-info h3 {
+        font-size: 0.85rem;
     }
 
-    /* Afficher le bouton texte sur mobile */
+    .price {
+        font-size: 0.85rem;
+    }
+
+    /* Cacher la flèche desktop, afficher bouton texte */
+    .arrow-btn { display: none; }
+
     .btn-add-mobile {
         display: block;
         width: 100%;
         padding: 10px;
-        margin-top: 10px;
+        margin-top: 8px;
         background: var(--primary);
         color: var(--white);
         border: none;
@@ -498,36 +600,57 @@ h1 {
         cursor: pointer;
         border-radius: 4px;
         transition: background 0.3s;
+        touch-action: manipulation;
     }
 
-    .btn-add-mobile:hover {
-        background: #1a2a44;
-    }
+    .btn-add-mobile:hover { background: #1a2a44; }
 
     /* Footer */
     .footer {
-        padding-bottom: 90px;
+        padding: 40px 20px 90px;
     }
 }
+
+
+/* ============================================================
+   RESPONSIVE — PETIT MOBILE (max 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+    .content {
+        padding: calc(var(--navbar-height) + 16px) 12px 50px;
+    }
+
+    h1 { font-size: 1.6rem; }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .product-info h3 { font-size: 0.78rem; }
+    .price { font-size: 0.78rem; }
+
+    .btn-add-mobile {
+        font-size: 9px;
+        padding: 9px 6px;
+    }
+}
+
 
 /* ============================================================
    RESPONSIVE — TRÈS PETIT (max 400px)
    ============================================================ */
 @media (max-width: 400px) {
-    h1 {
-        font-size: 1.7rem;
-    }
-
     .logo {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         letter-spacing: 2px;
     }
+
+    h1 { font-size: 1.4rem; }
 
     .product-grid {
         grid-template-columns: 1fr;
     }
 
-    .btn-add-mobile {
-        font-size: 9px;
-    }
+    .btn-add-mobile { font-size: 9px; }
 }

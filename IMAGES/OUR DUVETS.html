@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZEALIMAN | Collections</title>
     <link rel="stylesheet" href="./OUR DUVETS.css">
+    <link rel="stylesheet" href="../cart.css"> <!-- ✅ ICI dans le head -->
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,200..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,200..700,0..1,-50..200" />
 </head>
-<script src="../cart.js"></script>
+
 <body>
 
     <!-- NAVBAR DESKTOP -->
@@ -86,12 +86,10 @@
                     <h3>L'Hiver Arctique</h3>
                     <div class="price-row">
                         <span class="price">45 000 FCFA</span>
-                        <!-- Bouton flèche desktop -->
                         <button class="arrow-btn" onclick="addToCart('L\'Hiver Arctique', 45000, this)">
                             <span class="material-symbols-outlined">arrow_forward</span>
                         </button>
                     </div>
-                    <!-- Bouton texte mobile -->
                     <button class="btn-add-mobile" onclick="addToCart('L\'Hiver Arctique', 45000, this)">
                         + Ajouter au panier
                     </button>
@@ -148,55 +146,11 @@
         </div>
     </footer>
 
+    <!-- ✅ Filtres uniquement — PAS d'ancien script panier -->
+    <script src="../cart.js"></script>
     <script>
-        /* ===== PANIER ===== */
-        let cart = JSON.parse(localStorage.getItem('zealiman-cart')) || [];
-
-        function updateBadge() {
-            const total = cart.reduce((sum, item) => sum + item.qty, 0);
-            const badge = document.getElementById('cart-count');
-            if (!badge) return;
-            badge.textContent = total;
-            badge.style.display = total === 0 ? 'none' : 'flex';
-        }
-
-        function addToCart(name, price, btn) {
-            const existing = cart.find(item => item.name === name);
-            if (existing) {
-                existing.qty++;
-            } else {
-                cart.push({ name, price, qty: 1 });
-            }
-            localStorage.setItem('zealiman-cart', JSON.stringify(cart));
-            updateBadge();
-
-            // Animation badge
-            const badge = document.getElementById('cart-count');
-            badge.style.transform = 'scale(1.6)';
-            setTimeout(() => badge.style.transform = 'scale(1)', 300);
-
-            // Feedback bouton flèche (desktop)
-            const icon = btn.querySelector('.material-symbols-outlined');
-            if (icon) {
-                icon.textContent = 'check';
-                setTimeout(() => icon.textContent = 'arrow_forward', 1500);
-            }
-
-            // Feedback bouton texte (mobile)
-            if (btn.classList.contains('btn-add-mobile')) {
-                btn.textContent = '✓ Ajouté !';
-                btn.style.background = '#0F6E56';
-                setTimeout(() => {
-                    btn.textContent = '+ Ajouter au panier';
-                    btn.style.background = '';
-                }, 1500);
-            }
-        }
-
-        /* ===== FILTRES ===== */
         const filterBtns = document.querySelectorAll('.filter-btn');
         const cards = document.querySelectorAll('.product-card');
-
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
@@ -207,10 +161,7 @@
                 });
             });
         });
-
-        updateBadge();
     </script>
 
 </body>
-
 </html>

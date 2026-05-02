@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZEALIMAN | L'excellence du sommeil</title>
     <link rel="stylesheet" href="./ABOUT.css">
+    <link rel="stylesheet" href="../cart.css"> <!-- ✅ ICI dans le head -->
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" />
 </head>
-<script src="../cart.js"></script>
+
 <body>
 
     <!-- HEADER -->
@@ -48,7 +48,6 @@
     <!-- CONTENU -->
     <main>
 
-        <!-- Hero -->
         <section class="hero">
             <div class="hero-overlay"></div>
             <div class="container hero-content">
@@ -57,16 +56,13 @@
             </div>
         </section>
 
-        <!-- Notre Histoire -->
         <section class="container section-spacing">
             <div class="story-grid">
                 <div class="story-text">
                     <span class="eyebrow">NOTRE HISTOIRE</span>
                     <h2>L'essence de ZEALIMAN</h2>
-                    <p>ZEALIMAN est né d'une quête simple mais profonde : créer le refuge ultime au sein de votre foyer.
-                        Nous pensons que le sommeil n'est pas seulement une nécessité, mais un rituel sacré.</p>
-                    <p>Notre philosophie repose sur trois piliers : <strong>Confort, Pureté et Confiance</strong>.
-                        Chaque pièce est le fruit d'une sélection rigoureuse.</p>
+                    <p>ZEALIMAN est né d'une quête simple mais profonde : créer le refuge ultime au sein de votre foyer. Nous pensons que le sommeil n'est pas seulement une nécessité, mais un rituel sacré.</p>
+                    <p>Notre philosophie repose sur trois piliers : <strong>Confort, Pureté et Confiance</strong>. Chaque pièce est le fruit d'une sélection rigoureuse.</p>
                 </div>
                 <div class="story-visual">
                     <div class="abstract-pattern"></div>
@@ -74,7 +70,6 @@
             </div>
         </section>
 
-        <!-- Nos Engagements -->
         <section class="bg-light section-spacing">
             <div class="container">
                 <div class="center-title">
@@ -101,7 +96,6 @@
             </div>
         </section>
 
-        <!-- Innovation -->
         <section class="container section-spacing">
             <div class="innovation-flex">
                 <div class="innovation-images">
@@ -111,23 +105,15 @@
                 <div class="innovation-content">
                     <span class="eyebrow">INNOVATION</span>
                     <h3>La science du bien-être.</h3>
-                    <p>Le sommeil est le fondement de la santé. Chez ZEALIMAN, nous collaborons avec des experts en
-                        ergonomie pour comprendre la régulation thermique.</p>
+                    <p>Le sommeil est le fondement de la santé. Chez ZEALIMAN, nous collaborons avec des experts en ergonomie pour comprendre la régulation thermique.</p>
                     <ul class="custom-checks">
-                        <li>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            Régulation thermique naturelle
-                        </li>
-                        <li>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            Fibres hypoallergéniques premium
-                        </li>
+                        <li><span class="material-symbols-outlined">check_circle</span>Régulation thermique naturelle</li>
+                        <li><span class="material-symbols-outlined">check_circle</span>Fibres hypoallergéniques premium</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- CTA -->
         <section class="cta-section">
             <div class="container cta-box">
                 <h2>Commencez votre voyage vers le repos parfait.</h2>
@@ -154,23 +140,8 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT -->
-    <script>
-        /* ===== PANIER ===== */
-        let cart = JSON.parse(localStorage.getItem('zealiman-cart')) || [];
-
-        function updateBadge() {
-            const total = cart.reduce((sum, item) => sum + item.qty, 0);
-            const badge = document.getElementById('cart-count');
-            if (!badge) return;
-            badge.textContent = total;
-            badge.style.display = total === 0 ? 'none' : 'flex';
-        }
-
-        // Init au chargement
-        updateBadge();
-    </script>
+    <!-- ✅ cart.js tout seul ici -->
+    <script src="../cart.js"></script>
 
 </body>
-
 </html>
