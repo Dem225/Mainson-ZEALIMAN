@@ -4,22 +4,25 @@
 
 /* --- Variables --- */
 :root {
-    --primary:    #091426;
+    --primary: #091426;
     --text-muted: #585f6a;
-    --bg-light:   #f8f9ff;
-    --border:     #eeeeee;
-    --white:      #ffffff;
-    --ease:       all 0.3s ease;
+    --bg-light: #f8f9ff;
+    --border: #eeeeee;
+    --white: #ffffff;
+    --ease: all 0.3s ease;
 }
 
 /* --- Reset --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     max-width: 100%;
     overflow-x: hidden;
 }

@@ -4,23 +4,26 @@
 
 /* --- Variables --- */
 :root {
-    --dark:            #1a1a1a;
-    --dark-blue:       #242c3d;
-    --blue-bg:         #eff4f9;
-    --text-muted:      #777;
-    --border:          #eee;
+    --dark: #1a1a1a;
+    --dark-blue: #242c3d;
+    --blue-bg: #eff4f9;
+    --text-muted: #777;
+    --border: #eee;
     --transition-fast: 0.25s ease;
     --transition-slow: 0.4s ease-out;
 }
 
 /* --- Reset --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     max-width: 100%;
     overflow-x: hidden;
 }
@@ -32,9 +35,14 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-h1, h2, h3, h4,
-.logo, nav a,
-.subtitle, .durable-badge {
+h1,
+h2,
+h3,
+h4,
+.logo,
+nav a,
+.subtitle,
+.durable-badge {
     font-family: 'League Spartan', sans-serif;
     font-weight: 400;
 }
@@ -355,9 +363,17 @@ header {
     overflow: hidden;
 }
 
-.img1 { background-image: url('./20.png'); }
-.img2 { background-image: url('./5.png'); }
-.img3 { background-image: url('./11.png'); }
+.img1 {
+    background-image: url('./20.png');
+}
+
+.img2 {
+    background-image: url('./5.png');
+}
+
+.img3 {
+    background-image: url('./11.png');
+}
 
 .badge {
     background: black;
@@ -580,7 +596,9 @@ footer {
    RESPONSIVE — TABLETTE (max 1024px)
    ============================================================ */
 @media (max-width: 1024px) {
-    .hero h1 { font-size: 2.8rem; }
+    .hero h1 {
+        font-size: 2.8rem;
+    }
 
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -654,7 +672,9 @@ footer {
         justify-content: center;
     }
 
-    .hero h1 { font-size: 2.2rem; }
+    .hero h1 {
+        font-size: 2.2rem;
+    }
 
     /* Features */
     .feature-grid {
@@ -680,7 +700,9 @@ footer {
         gap: 40px;
     }
 
-    .product-img { height: 350px; }
+    .product-img {
+        height: 350px;
+    }
 
     /* Newsletter */
     .newsletter-form {
@@ -725,7 +747,9 @@ footer {
    RESPONSIVE — ULTRA-LARGES (1440px+)
    ============================================================ */
 @media (min-width: 1440px) {
-    .hero h1 { font-size: 4rem; }
+    .hero h1 {
+        font-size: 4rem;
+    }
 
     .product-grid {
         gap: 50px;

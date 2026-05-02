@@ -478,11 +478,13 @@ nav a.active::after {
     }
 
     .product-grid {
-        grid-template-columns: repeat(2, 1fr); /* Passage à 2 colonnes */
+        grid-template-columns: repeat(2, 1fr);
+        /* Passage à 2 colonnes */
     }
 
     .reassurance-grid {
-        grid-template-columns: 1fr; /* On empile les cartes de réassurance */
+        grid-template-columns: 1fr;
+        /* On empile les cartes de réassurance */
     }
 
     .card-full-width {
@@ -501,7 +503,8 @@ nav a.active::after {
     }
 
     nav {
-        display: none; /* Masque la nav classique (prévoir un menu burger en JS) */
+        display: none;
+        /* Masque la nav classique (prévoir un menu burger en JS) */
     }
 
     .hero-content h1 {
@@ -509,7 +512,8 @@ nav a.active::after {
     }
 
     .footer-grid {
-        grid-template-columns: 1fr; /* Le footer passe sur une seule colonne */
+        grid-template-columns: 1fr;
+        /* Le footer passe sur une seule colonne */
         gap: 40px;
     }
 
@@ -532,10 +536,12 @@ nav a.active::after {
     }
 
     .product-grid {
-        grid-template-columns: 1fr; /* Une seule colonne pour les produits */
+        grid-template-columns: 1fr;
+        /* Une seule colonne pour les produits */
     }
 
-    .card-large, .card-small {
+    .card-large,
+    .card-small {
         padding: 30px 20px;
     }
 
@@ -565,21 +571,24 @@ nav a.active::after {
 
 /* --- BOTTOM NAV STYLE --- */
 .mobile-bottom-nav {
-    display: none; /* Caché sur PC */
+    display: none;
+    /* Caché sur PC */
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     height: 70px;
     background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(15px); /* Effet flou premium */
+    backdrop-filter: blur(15px);
+    /* Effet flou premium */
     -webkit-backdrop-filter: blur(15px);
     border-top: 1px solid var(--border);
     z-index: 9999;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-bottom: env(safe-area-inset-bottom); /* Adaptation iPhone récents */
+    padding-bottom: env(safe-area-inset-bottom);
+    /* Adaptation iPhone récents */
 }
 
 .nav-item {
@@ -593,7 +602,8 @@ nav a.active::after {
 
 .nav-item .material-symbols-outlined {
     font-size: 24px;
-    font-variation-settings: 'wght' 200; /* Garde le trait fin luxe */
+    font-variation-settings: 'wght' 200;
+    /* Garde le trait fin luxe */
 }
 
 .nav-text {
