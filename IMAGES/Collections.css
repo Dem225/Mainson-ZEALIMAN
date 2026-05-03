@@ -7,7 +7,7 @@
 }
 
 body {
-    font-family: 'VotrePolice', sans-serif;
+    font-family: 'Manrope', sans-serif;
 }
 
 .container {
@@ -220,6 +220,7 @@ body {
     font-size: 11px;
     cursor: pointer;
     transition: 0.3s;
+    font-family: 'Manrope', sans-serif;
 }
 
 .btn-add:hover {
@@ -227,14 +228,6 @@ body {
     color: white;
     border-color: var(--dark);
 }
-
-.btn-add a {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    border-color: var(--dark);
-
-}
-
 
 /* --- NEWSLETTER --- */
 .newsletter {
@@ -268,6 +261,7 @@ body {
     background: transparent;
     outline: none;
     padding: 0 10px;
+    font-family: 'Manrope', sans-serif;
 }
 
 .news-form button {
@@ -278,6 +272,7 @@ body {
     font-size: 10px;
     font-weight: 700;
     cursor: pointer;
+    font-family: 'Manrope', sans-serif;
 }
 
 /* --- FOOTER --- */
@@ -350,7 +345,7 @@ body {
     --font-family: 'Manrope', sans-serif;
 }
 
-* {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -362,7 +357,6 @@ header {
     height: 90px;
     background-color: var(--bg-header);
     backdrop-filter: blur(10px);
-    /* Effet flou au scroll */
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
@@ -370,7 +364,6 @@ header {
     align-items: center;
     padding: 0 50px;
     position: fixed;
-    /* Reste en haut au défilement */
     top: 0;
     left: 0;
     z-index: 1000;
@@ -382,7 +375,6 @@ header {
     font-weight: 600;
     font-size: 1.3rem;
     letter-spacing: 5px;
-    /* Espacement large type "Luxe" */
     color: var(--primary-dark);
     text-transform: uppercase;
 }
@@ -410,7 +402,6 @@ nav a:hover {
     color: var(--primary-dark);
 }
 
-/* --- Le Marqueur (Ligne de bas) --- */
 nav a.active {
     color: var(--primary-dark);
 }
@@ -421,12 +412,11 @@ nav a.active::after {
     bottom: 0;
     left: 0;
     width: 100%;
-    /* La ligne prend toute la largeur du texte */
     height: 1.5px;
     background-color: var(--primary-dark);
 }
 
-/* --- Icônes (Recherche & Panier) --- */
+/* --- Icônes Header --- */
 .header-icons {
     display: flex;
     gap: 20px;
@@ -447,27 +437,91 @@ nav a.active::after {
 }
 
 .material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 200,
-        /* Trait fin très élégant */
-        'GRAD' 0,
-        'opsz' 24;
-
+    font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
     font-size: 24px;
     color: #091426;
-    /* Ton noir ZEALIMAN */
     cursor: pointer;
     transition: opacity 0.3s ease;
 }
 
+/* --- Badge panier --- */
+.cart-wrapper {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
 
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: var(--dark);
+    color: white;
+    font-size: 9px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: transform 0.2s;
+}
+
+/* ============================================================
+   BOTTOM NAV MOBILE
+   ✅ CORRECTION : display:none ici, display:flex UNIQUEMENT
+   dans le media query mobile — pas de doublon !
+   ============================================================ */
+.mobile-bottom-nav {
+    display: none; /* ✅ caché par défaut sur desktop */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid var(--border);
+    z-index: 9999;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.nav-item .material-symbols-outlined {
+    font-size: 24px;
+    font-variation-settings: 'wght' 200;
+}
+
+.nav-text {
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.nav-item.active {
+    color: var(--dark);
+}
 
 /* ==========================================================================
    RESPONSIVE DESIGN
    ========================================================================== */
 
-/* --- Tablettes et écrans moyens (Moins de 1024px) --- */
+/* --- Tablettes (max 1024px) --- */
 @media (max-width: 1024px) {
     .container {
         padding: 0 25px;
@@ -479,12 +533,10 @@ nav a.active::after {
 
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
-        /* Passage à 2 colonnes */
     }
 
     .reassurance-grid {
         grid-template-columns: 1fr;
-        /* On empile les cartes de réassurance */
     }
 
     .card-full-width {
@@ -495,16 +547,25 @@ nav a.active::after {
     }
 }
 
-/* --- Mobiles larges (Moins de 768px) --- */
+/* --- Mobiles larges (max 768px) --- */
 @media (max-width: 768px) {
     header {
         padding: 0 20px;
         height: 70px;
     }
 
-    nav {
+    /* Cacher la nav du header */
+    header nav {
         display: none;
-        /* Masque la nav classique (prévoir un menu burger en JS) */
+    }
+
+    /* ✅ CORRECTION : display:flex ICI SEULEMENT, sans doublon */
+    .mobile-bottom-nav {
+        display: flex;
+    }
+
+    body {
+        padding-bottom: 80px;
     }
 
     .hero-content h1 {
@@ -513,7 +574,6 @@ nav a.active::after {
 
     .footer-grid {
         grid-template-columns: 1fr;
-        /* Le footer passe sur une seule colonne */
         gap: 40px;
     }
 
@@ -527,9 +587,13 @@ nav a.active::after {
         padding: 20px 30px;
         font-size: 14px;
     }
+
+    .header-icons {
+        gap: 15px;
+    }
 }
 
-/* --- Petits Mobiles (Moins de 480px) --- */
+/* --- Petits Mobiles (max 480px) --- */
 @media (max-width: 480px) {
     .hero-content h1 {
         font-size: 1.8rem;
@@ -537,7 +601,6 @@ nav a.active::after {
 
     .product-grid {
         grid-template-columns: 1fr;
-        /* Une seule colonne pour les produits */
     }
 
     .card-large,
@@ -567,82 +630,9 @@ nav a.active::after {
     }
 }
 
-
-
-/* --- BOTTOM NAV STYLE --- */
-.mobile-bottom-nav {
-    display: none; /* caché sur desktop */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 70px;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-top: 1px solid var(--border);
-    z-index: 9999;
-    justify-content: space-around;
-    align-items: center;
-    padding-bottom: env(safe-area-inset-bottom);
-}
-.nav-item {
-    text-decoration: none;
-    color: var(--muted);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: color 0.3s ease;
-}
-
-.nav-item .material-symbols-outlined {
-    font-size: 24px;
-    font-variation-settings: 'wght' 200;
-    /* Garde le trait fin luxe */
-}
-
-.nav-text {
-    font-size: 8px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 700;
-    margin-top: 4px;
-}
-
-.nav-item.active {
-    color: var(--dark);
-}
-
-/* --- LOGIQUE RESPONSIVE --- */
-
-/* Sur écrans larges : on cache la barre du bas */
+/* --- Desktop (min 769px) --- */
 @media (min-width: 769px) {
     .mobile-bottom-nav {
         display: none !important;
-    }
-}
-
-/* Sur écrans mobiles : on active la barre et on adapte le reste */
-@media (max-width: 768px) {
-   .mobile-bottom-nav {
-     display: flex; /* seulement sur mobile */
-    /* ← Ce display:none... */
-    position: fixed;
-    display: flex;  /* ← ...est écrasé par ce display:flex juste après ! */
-    }
-
-    /* On cache la navigation classique du header pour éviter les doublons */
-    header nav {
-        display: none;
-    }
-
-    /* On laisse de la place en bas de page pour que la barre ne cache pas le footer */
-    body {
-        padding-bottom: 80px;
-    }
-
-    /* Optionnel : masquer les icônes de recherche du header si elles sont en bas */
-    .header-icons {
-        gap: 15px;
     }
 }
